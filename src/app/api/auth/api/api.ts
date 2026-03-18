@@ -1,0 +1,11 @@
+export * from './login.service';
+import { LoginService } from './login.service';
+export * from './me.service';
+import { MeService } from './me.service';
+export * from './ping.service';
+import { PingService } from './ping.service';
+export * from './refresh.service';
+import { RefreshService } from './refresh.service';
+export * from './register.service';
+import { RegisterService } from './register.service';
+export const APIS = [LoginService, MeService, PingService, RefreshService, RegisterService];

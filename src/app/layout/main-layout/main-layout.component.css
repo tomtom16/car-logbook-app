@@ -1,0 +1,17 @@
+.layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.page {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}

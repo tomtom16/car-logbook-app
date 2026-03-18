@@ -1,0 +1,13 @@
+.logbook-entry-card {
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.logbook-entry-card p {
+  margin: 6px 0;
+}
+
+.logbook-entry-card strong {
+  color: #333;
+}

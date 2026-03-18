@@ -1,0 +1,31 @@
+<div class="dropdown-container">
+
+  @if (loading) {
+
+    <div class="center">
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+
+  } @else {
+
+    @if (error) {
+
+      <p-message severity="error" text="{{ error }}"></p-message>
+
+    } @else {
+
+      <p-select
+        [options]="options"
+        [(ngModel)]="selectedOption"
+        optionLabel="label"
+        placeholder="Select a vehicle"
+        emptyMessage="No vehicles found"
+        (ngModelChange)="onChange($event)"
+        class="w-full">
+      </p-select>
+
+    }
+
+  }
+
+</div>

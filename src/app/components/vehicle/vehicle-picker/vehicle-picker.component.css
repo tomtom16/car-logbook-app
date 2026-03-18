@@ -1,0 +1,9 @@
+.center {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.dropdown-container {
+  width: 300px;
+}

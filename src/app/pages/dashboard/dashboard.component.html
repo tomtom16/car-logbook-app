@@ -1,0 +1,43 @@
+<div class="dashboard">
+  <p-card header="Dashboard">
+    <h2>Welcome {{ username }}</h2>
+
+    <!-- Loading -->
+    @if (loading) {
+      <div class="center">
+        <p-progressSpinner></p-progressSpinner>
+      </div>
+    }
+
+    <!-- Error -->
+    @if (!loading && error) {
+      <p-message severity="error" text="{{ error }}"></p-message>
+    }
+
+    <!-- Data -->
+    @if (!loading && !error && currentVehicle) {
+
+      <div class="p-grid p-m-3 p-justify-center">
+
+        <p>Current Vehicle: {{ currentVehicleText }}</p>
+        <app-vehicle-details
+          [data]="currentVehicle">
+        </app-vehicle-details>
+
+        @if (currentVehicle.lastLogbookEntry) {
+          <app-logbookentry
+            [data]="currentVehicle.lastLogbookEntry">
+          </app-logbookentry>
+        }
+
+        @if (currentVehicle.lastLogbookFuelEntry) {
+          <app-logbookfuelentry
+            [data]="currentVehicle.lastLogbookFuelEntry">
+          </app-logbookfuelentry>
+        }
+
+      </div>
+    }
+
+  </p-card>
+</div>

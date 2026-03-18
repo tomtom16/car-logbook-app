@@ -1,0 +1,12 @@
+@import "primeicons/primeicons.css";
+
+body{
+    height: 100vh;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+
+    /* subtle gradient background */
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}

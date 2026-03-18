@@ -1,0 +1,11 @@
+export * from './import.service';
+import { ImportService } from './import.service';
+export * from './logbook.service';
+import { LogbookService } from './logbook.service';
+export * from './logbookFuel.service';
+import { LogbookFuelService } from './logbookFuel.service';
+export * from './ping.service';
+import { PingService } from './ping.service';
+export * from './vehicle.service';
+import { VehicleService } from './vehicle.service';
+export const APIS = [ImportService, LogbookService, LogbookFuelService, PingService, VehicleService];

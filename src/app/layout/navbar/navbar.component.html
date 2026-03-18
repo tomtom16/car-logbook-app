@@ -1,0 +1,29 @@
+<p-toolbar>
+
+  <!-- Left side -->
+  <div class="p-toolbar-group-start">
+    <app-vehicle-picker
+      (selectionChange)="onSelectionChange($event)">
+    </app-vehicle-picker>
+  </div>
+
+  <div class="p-toolbar-group-center">
+    <h3 class="app-title">Logbook</h3>
+  </div>
+
+  <!-- Right side -->
+  <div class="p-toolbar-group-end">
+
+    @if (username) {
+      <span class="username">{{ username }}</span>
+    }
+
+    <p-button
+      label="Logout"
+      icon="pi pi-sign-out"
+      (onClick)="logout()">
+    </p-button>
+
+  </div>
+
+</p-toolbar>

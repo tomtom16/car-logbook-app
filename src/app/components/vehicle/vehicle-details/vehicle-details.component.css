@@ -1,0 +1,13 @@
+.vehicle-card {
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.vehicle-card p {
+  margin: 6px 0;
+}
+
+.vehicle-card strong {
+  color: #333;
+}
