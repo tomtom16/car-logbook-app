@@ -7,6 +7,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import {CreateVehicleComponent} from "./pages/vehicle/create-vehicle/create-vehicle.component";
+import {CreateLogbookFuelEntryComponent} from "./pages/logbook/fuel/create-entry/create-logbook-fuel-entry.component";
 
 export const routes: Routes = [
   // ✅ AUTH PAGES (NO NAVBAR)
@@ -31,6 +32,11 @@ export const routes: Routes = [
       {
         path: 'vehicle/create',
         component: CreateVehicleComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: 'logbook/fuel/create',
+        component: CreateLogbookFuelEntryComponent,
         canActivate: [authGuard]
       }
     ],

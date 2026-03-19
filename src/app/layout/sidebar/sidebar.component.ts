@@ -21,6 +21,12 @@ export class SidebarComponent {
         }
       ] },
     { label: 'Logbook', icon: 'pi pi-book', routerLink: '/page-one' },
-    { label: 'Refueling', icon: 'pi pi-cart-arrow-down', routerLink: '/page-two' },
+    { label: 'Refueling', icon: 'pi pi-cart-arrow-down', routerLink: '/logbook/fuel', items: [
+        {
+          label: 'Create Fuel Entry',
+          icon: 'pi pi-plus',
+          routerLink: '/logbook/fuel/create'
+        }
+      ] },
   ];
 }

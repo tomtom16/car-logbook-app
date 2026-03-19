@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './logbookentry.component.css',
 })
 export class LogbookentryComponent {
-  dateFormat= 'dd.MM.yyyy hh:mm Z';
+  dateFormat= 'dd.MM.yyyy HH:mm Z';
 
   @Input() data: LogbookEntry = {};
 

@@ -9,7 +9,6 @@
         <label for="make">Make</label>
 
         <span class="p-input-icon-left w-full">
-          <!--<i class="pi pi-user"></i>-->
           <input
             id="make"
             pInputText
@@ -23,7 +22,6 @@
         <label for="make">Model</label>
 
         <span class="p-input-icon-left w-full">
-          <!--<i class="pi pi-user"></i>-->
           <input
                   id="model"
                   pInputText
@@ -37,7 +35,6 @@
         <label for="licensePlate">License Plate</label>
 
         <span class="p-input-icon-left w-full">
-          <!--<i class="pi pi-user"></i>-->
           <input
                   id="licensePlate"
                   pInputText
@@ -51,7 +48,6 @@
         <label for="yearOfConstruction">Year of construction</label>
 
         <span class="p-input-icon-left w-full">
-          <!--<i class="pi pi-user"></i>-->
             <p-datepicker [(ngModel)]="yearOfConstruction" dateFormat="yy-mm-dd" />
         </span>
     </div>
@@ -60,7 +56,6 @@
         <label for="gasoline">Gasoline</label>
 
         <span class="p-input-icon-left w-full">
-          <!--<i class="pi pi-user"></i>-->
             <p-select
                 [options]="gasolineOptions"
                 [(ngModel)]="gasoline"
@@ -75,7 +70,6 @@
         <label for="power">Power</label>
 
         <span class="p-input-icon-left w-full">
-          <!--<i class="pi pi-user"></i>-->
             <p-inputnumber [(ngModel)]="powerKw" inputId="powerKw" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2" />
         </span>
     </div>
@@ -84,7 +78,6 @@
         <label for="photo">Photo</label>
 
         <span class="p-input-icon-left w-full">
-          <!--<i class="pi pi-user"></i>-->
           <input
                   id="photo"
                   pInputText
@@ -98,7 +91,6 @@
         <label for="primary">Primary</label>
 
         <span class="p-input-icon-left w-full">
-          <!--<i class="pi pi-user"></i>-->
             <p-checkbox [(ngModel)]="primary" [binary]="true" />
         </span>
     </div>
@@ -112,7 +104,7 @@
       <div class="button-group">
         <p-button
           label="Create"
-          icon="pi pi-sign-in"
+          icon="pi pi-plus"
           (onClick)="onCreate()"
           styleClass="w-full p-mb-2">
         </p-button>

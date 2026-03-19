@@ -11,7 +11,7 @@ import {
   RegisterResponse,
   RegisterService,
 } from '../api/auth';
-import { Vehicle, VehicleService } from '../api/car-logbook';
+import {LogbookFuelEntry, LogbookFuelService, Vehicle, VehicleService} from '../api/car-logbook';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -19,6 +19,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
+  logbookFuelService: LogbookFuelService;
   loginService: LoginService;
   refreshService: RefreshService;
   registerService: RegisterService;
@@ -48,6 +49,7 @@ export class ApiService {
       configuration
     );
 
+    this.logbookFuelService = new LogbookFuelService(this.http, environment.carLogbookBaseUrl);
     this.vehicleService = new VehicleService(this.http, environment.carLogbookBaseUrl);
   }
 
@@ -80,5 +82,9 @@ export class ApiService {
 
   createVehicle(vehicle: Vehicle): Observable<Vehicle> {
     return this.vehicleService.createVehicle(vehicle);
+  }
+
+  createLogbookFuelEntry(vehicleId: string, logbookFuelEntry: LogbookFuelEntry): Observable<LogbookFuelEntry> {
+    return this.logbookFuelService.createFuelEntry(vehicleId, logbookFuelEntry);
   }
 }

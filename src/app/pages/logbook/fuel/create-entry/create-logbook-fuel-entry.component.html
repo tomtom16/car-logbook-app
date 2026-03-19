@@ -1,0 +1,107 @@
+<div class="logbook-fuel-entry-create-wrapper">
+
+    <p-card header="Create a vehicle" subheader="Please fill the vehicle details"
+            class="logbook-fuel-entry-create-card">
+
+        <div class="p-fluid">
+            <div class="field">
+                <label for="date">Date</label>
+
+                <span class="p-input-icon-left w-full">
+              <p-datepicker [(ngModel)]="date" [showTime]="true" [hourFormat]="hourFormat" dateFormat="dd.mm.yy" />
+          </span>
+            </div>
+
+            <!-- Mileage -->
+            <div class="field">
+                <label for="mileage">Mileage</label>
+
+                <span class="p-input-icon-left w-full">
+            <p-inputnumber [(ngModel)]="mileage" mode="decimal" inputId="mileage" [useGrouping]="false"/>
+        </span>
+            </div>
+
+            <!-- Trip -->
+            <div class="field">
+                <label for="trip">Trip</label>
+
+                <span class="p-input-icon-left w-full">
+            <p-inputnumber [(ngModel)]="trip" inputId="trip" mode="decimal" [minFractionDigits]="0"
+                           [maxFractionDigits]="1"/>
+        </span>
+            </div>
+
+            <!-- Units -->
+            <div class="field">
+                <label for="units">Units</label>
+
+                <span class="p-input-icon-left w-full">
+            <p-inputnumber [(ngModel)]="units" inputId="units" mode="decimal" [minFractionDigits]="0"
+                           [maxFractionDigits]="2"/>
+        </span>
+            </div>
+
+            <div class="field">
+                <label for="comment">Comment</label>
+
+                <span class="p-input-icon-left w-full">
+          <input
+                  id="comment"
+                  pInputText
+                  [(ngModel)]="comment"
+                  placeholder="Enter comment"
+                  (keyup.enter)="onCreate()" />
+        </span>
+            </div>
+
+            <!-- Units -->
+            <div class="field">
+                <label for="totalPrice">Total price</label>
+
+                <span class="p-input-icon-left w-full">
+            <p-inputnumber [(ngModel)]="totalPrice" inputId="totalPrice" mode="decimal" [minFractionDigits]="0"
+                           [maxFractionDigits]="2"/>
+        </span>
+            </div>
+
+            <div class="field">
+                <label for="unit">Unit</label>
+
+                <span class="p-input-icon-left w-full">
+            <p-select
+                    [options]="unitOptions"
+                    [(ngModel)]="unit"
+                    optionLabel="label"
+                    placeholder="Select the unit"
+                    class="w-full">
+            </p-select>
+        </span>
+            </div>
+
+            <!-- Error -->
+            @if (error) {
+                <p-message severity="error" text="{{ error }}"></p-message>
+            }
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <p-button
+                        label="Create"
+                        icon="pi pi-plus"
+                        (onClick)="onCreate()"
+                        styleClass="w-full p-mb-2">
+                </p-button>
+
+                <p-button
+                        label="Home"
+                        icon="pi pi-home"
+                        link
+                        (onClick)="onHome()">
+                </p-button>
+            </div>
+
+        </div>
+
+    </p-card>
+
+</div>

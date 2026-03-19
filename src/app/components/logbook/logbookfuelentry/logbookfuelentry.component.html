@@ -1,5 +1,5 @@
 <div class="p-col-12 p-md-4">
-  <p-card header="Current Logbook Entry" class="logbook-fuel-entry-card">
+  <p-card header="Current Logbook Fuel Entry" class="logbook-fuel-entry-card">
 
     <div class="p-grid">
 
@@ -9,6 +9,7 @@
         <p><strong>Trip:</strong> {{ data.trip }}</p>
         <p><strong>{{ data.unit }}:</strong> {{ data.units }}</p>
         <p><strong>Price:</strong> {{ data.price?.total }}</p>
+        <p><strong>Comment:</strong> {{ data.comment }}</p>
         <p><strong>Days since last refueling:</strong> {{ data.daysSinceLastRefuel }}</p>
       </div>
 

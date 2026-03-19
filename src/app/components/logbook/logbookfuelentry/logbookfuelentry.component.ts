@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './logbookfuelentry.component.css',
 })
 export class LogbookfuelentryComponent {
-  dateFormat = 'dd.MM.yyyy hh:mm Z';
+  dateFormat = 'dd.MM.yyyy HH:mm Z';
 
   @Input() data: LogbookFuelEntry = {};
 
