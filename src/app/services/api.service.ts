@@ -77,4 +77,8 @@ export class ApiService {
   getVehicle(id: string): Observable<Vehicle> {
     return this.vehicleService.getVehicle(id);
   }
+
+  createVehicle(vehicle: Vehicle): Observable<Vehicle> {
+    return this.vehicleService.createVehicle(vehicle);
+  }
 }

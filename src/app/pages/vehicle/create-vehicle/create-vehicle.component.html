@@ -1,0 +1,132 @@
+<div class="vehicle-create-wrapper">
+
+  <p-card header="Create a vehicle" subheader="Please fill the vehicle details" class="vehicle-create-card">
+
+    <div class="p-fluid">
+
+      <!-- Make -->
+      <div class="field">
+        <label for="make">Make</label>
+
+        <span class="p-input-icon-left w-full">
+          <!--<i class="pi pi-user"></i>-->
+          <input
+            id="make"
+            pInputText
+            [(ngModel)]="make"
+            placeholder="Enter make"
+            (keyup.enter)="onCreate()" />
+        </span>
+      </div>
+
+    <div class="field">
+        <label for="make">Model</label>
+
+        <span class="p-input-icon-left w-full">
+          <!--<i class="pi pi-user"></i>-->
+          <input
+                  id="model"
+                  pInputText
+                  [(ngModel)]="model"
+                  placeholder="Enter model"
+                  (keyup.enter)="onCreate()" />
+        </span>
+    </div>
+
+    <div class="field">
+        <label for="licensePlate">License Plate</label>
+
+        <span class="p-input-icon-left w-full">
+          <!--<i class="pi pi-user"></i>-->
+          <input
+                  id="licensePlate"
+                  pInputText
+                  [(ngModel)]="licensePlate"
+                  placeholder="Enter license plate"
+                  (keyup.enter)="onCreate()" />
+        </span>
+    </div>
+
+    <div class="field">
+        <label for="yearOfConstruction">Year of construction</label>
+
+        <span class="p-input-icon-left w-full">
+          <!--<i class="pi pi-user"></i>-->
+            <p-datepicker [(ngModel)]="yearOfConstruction" dateFormat="yy-mm-dd" />
+        </span>
+    </div>
+
+    <div class="field">
+        <label for="gasoline">Gasoline</label>
+
+        <span class="p-input-icon-left w-full">
+          <!--<i class="pi pi-user"></i>-->
+            <p-select
+                [options]="gasolineOptions"
+                [(ngModel)]="gasoline"
+                optionLabel="label"
+                placeholder="Select the gasoline"
+                class="w-full">
+            </p-select>
+        </span>
+    </div>
+
+    <div class="field">
+        <label for="power">Power</label>
+
+        <span class="p-input-icon-left w-full">
+          <!--<i class="pi pi-user"></i>-->
+            <p-inputnumber [(ngModel)]="powerKw" inputId="powerKw" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2" />
+        </span>
+    </div>
+
+    <div class="field">
+        <label for="photo">Photo</label>
+
+        <span class="p-input-icon-left w-full">
+          <!--<i class="pi pi-user"></i>-->
+          <input
+                  id="photo"
+                  pInputText
+                  [(ngModel)]="photo"
+                  placeholder="Enter photo (url)"
+                  (keyup.enter)="onCreate()" />
+        </span>
+    </div>
+
+    <div class="field">
+        <label for="primary">Primary</label>
+
+        <span class="p-input-icon-left w-full">
+          <!--<i class="pi pi-user"></i>-->
+            <p-checkbox [(ngModel)]="primary" [binary]="true" />
+        </span>
+    </div>
+
+      <!-- Error -->
+      @if (error) {
+        <p-message severity="error" text="{{ error }}"></p-message>
+      }
+
+      <!-- Buttons -->
+      <div class="button-group">
+        <p-button
+          label="Create"
+          icon="pi pi-sign-in"
+          (onClick)="onCreate()"
+          styleClass="w-full p-mb-2">
+        </p-button>
+
+        <p-button
+          label="Home"
+          icon="pi pi-home"
+          link
+          (onClick)="onHome()">
+        </p-button>
+      </div>
+
+    </div>
+
+  </p-card>
+
+</div>

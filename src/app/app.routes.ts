@@ -6,6 +6,7 @@ import { guestGuard } from './guards/guest.guard';
 import { RegisterComponent } from './pages/register/register.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
+import {CreateVehicleComponent} from "./pages/vehicle/create-vehicle/create-vehicle.component";
 
 export const routes: Routes = [
   // ✅ AUTH PAGES (NO NAVBAR)
@@ -27,6 +28,11 @@ export const routes: Routes = [
         component: DashboardComponent,
         canActivate: [authGuard], // ✅ protect route
       },
+      {
+        path: 'vehicle/create',
+        component: CreateVehicleComponent,
+        canActivate: [authGuard]
+      }
     ],
   },
 ];

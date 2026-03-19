@@ -5,6 +5,8 @@ import { Message } from 'primeng/message';
 import { FormsModule } from '@angular/forms';
 import { Select } from 'primeng/select';
 import { Vehicle } from '../../../api/car-logbook';
+import {Subscription} from "rxjs";
+import {UpdateService} from "../../../services/update.service";
 
 @Component({
   selector: 'app-vehicle-picker',
@@ -19,15 +21,23 @@ export class VehiclePickerComponent implements OnInit {
   loading = true;
   error = '';
 
+  private sub!: Subscription;
+
   @Output() selectionChange = new EventEmitter<any>();
 
   constructor(
     private apiService: ApiService,
     private cdr: ChangeDetectorRef,
+    private refreshService: UpdateService,
   ) {}
 
   ngOnInit(): void {
     this.loadOptions();
+
+    this.sub = this.refreshService.refreshDashboard$.subscribe(() => {
+      console.log('Dashboard refresh triggered!');
+      this.loadOptions();
+    });
   }
 
   loadOptions() {
