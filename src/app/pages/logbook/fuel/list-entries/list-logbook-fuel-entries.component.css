@@ -1,0 +1,60 @@
+/* Full screen center */
+.logbook-fuel-entry-list-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+
+}
+
+/* Card styling */
+.logbook-fuel-entry-list-card {
+  width: 100%;
+  max-width: 1400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+/* Field spacing */
+.field {
+  margin-bottom: 1.3rem;
+}
+
+/* Labels */
+.field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Ensure full width */
+.p-input-icon-left,
+.p-input-icon-left input,
+.p-password {
+  width: 100%;
+}
+
+/* Buttons */
+.button-group {
+  margin-top: 1rem;
+}
+
+/* Optional error fallback (if not using p-message) */
+.error {
+  color: #f44336;
+}
+
+/* Fix password alignment */
+:host ::ng-deep .p-password {
+  width: 100%;
+}
+
+:host ::ng-deep .p-password input {
+  width: 100%;
+}
+
+/* Optional: slightly softer icons */
+.pi {
+  color: #6b7280; /* subtle gray */
+}

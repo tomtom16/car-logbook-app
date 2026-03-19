@@ -1,0 +1,30 @@
+<div class="logbook-entry-list-wrapper">
+
+    <p-card class="logbook-entry-list-card">
+        <p-table [value]="entries" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template #header>
+                <tr>
+                    <th>Start date</th>
+                    <th>End date</th>
+                    <th>KM Start</th>
+                    <th>KM End</th>
+                    <th>Trip</th>
+                    <th>Route</th>
+                    <th>comment</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-entry>
+                <tr>
+                    <td>{{ entry.startDate }}</td>
+                    <td>{{ entry.endDate }}</td>
+                    <td>{{ entry.kmStart }}</td>
+                    <td>{{ entry.kmEnd }}</td>
+                    <td>{{ entry.trip }}</td>
+                    <td>{{ entry.route }}</td>
+                    <td>{{ entry.comment }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+
+</div>

@@ -1,23 +1,39 @@
-<div class="logbook-fuel-entry-create-wrapper">
+<div class="logbook-entry-create-wrapper">
 
-    <p-card header="Create a logbook fuel entry" subheader="Please fill the fuel entry details"
-            class="logbook-fuel-entry-create-card">
+    <p-card header="Create a logbook entry" subheader="Please fill the entry details"
+            class="logbook-entry-create-card">
 
         <div class="p-fluid">
             <div class="field">
-                <label for="date">Date</label>
+                <label for="date">Start date</label>
 
                 <span class="p-input-icon-left w-full">
-              <p-datepicker [(ngModel)]="date" [showTime]="true" [hourFormat]="hourFormat" dateFormat="dd.mm.yy"/>
+              <p-datepicker [(ngModel)]="startDate" [showTime]="true" [hourFormat]="hourFormat" dateFormat="dd.mm.yy" />
+          </span>
+            </div>
+            <div class="field">
+                <label for="date">End date</label>
+
+                <span class="p-input-icon-left w-full">
+              <p-datepicker [(ngModel)]="endDate" [showTime]="true" [hourFormat]="hourFormat" dateFormat="dd.mm.yy" />
           </span>
             </div>
 
-            <!-- Mileage -->
+            <!-- KM Start -->
             <div class="field">
-                <label for="mileage">Mileage</label>
+                <label for="kmStart">KM Start</label>
 
                 <span class="p-input-icon-left w-full">
-            <p-inputnumber [(ngModel)]="mileage" mode="decimal" inputId="mileage" [useGrouping]="false"/>
+            <p-inputnumber [(ngModel)]="kmStart" mode="decimal" inputId="kmStart" [useGrouping]="false"/>
+        </span>
+            </div>
+
+            <!-- KM End -->
+            <div class="field">
+                <label for="kmEnd">KM End</label>
+
+                <span class="p-input-icon-left w-full">
+            <p-inputnumber [(ngModel)]="kmEnd" mode="decimal" inputId="kmEnd" [useGrouping]="false"/>
         </span>
             </div>
 
@@ -32,36 +48,15 @@
             </div>
 
             <div class="field">
-                <label for="unit">Unit</label>
+                <label for="route">Route</label>
 
                 <span class="p-input-icon-left w-full">
-            <p-select
-                    [options]="unitOptions"
-                    [(ngModel)]="unit"
-                    optionLabel="label"
-                    placeholder="Select the unit"
-                    class="w-full">
-            </p-select>
-        </span>
-            </div>
-
-            <!-- Units -->
-            <div class="field">
-                <label for="units">Units</label>
-
-                <span class="p-input-icon-left w-full">
-            <p-inputnumber [(ngModel)]="units" inputId="units" mode="decimal" [minFractionDigits]="0"
-                           [maxFractionDigits]="2"/>
-        </span>
-            </div>
-
-            <!-- Total Price -->
-            <div class="field">
-                <label for="totalPrice">Total price</label>
-
-                <span class="p-input-icon-left w-full">
-            <p-inputnumber [(ngModel)]="totalPrice" inputId="totalPrice" mode="decimal" [minFractionDigits]="0"
-                           [maxFractionDigits]="2"/>
+          <input
+                  id="route"
+                  pInputText
+                  [(ngModel)]="route"
+                  placeholder="Enter route"
+                  (keyup.enter)="onCreate()" />
         </span>
             </div>
 
@@ -74,7 +69,7 @@
                   pInputText
                   [(ngModel)]="comment"
                   placeholder="Enter comment"
-                  (keyup.enter)="onCreate()"/>
+                  (keyup.enter)="onCreate()" />
         </span>
             </div>
 

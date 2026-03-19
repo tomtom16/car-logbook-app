@@ -1,0 +1,30 @@
+<div class="logbook-fuel-entry-list-wrapper">
+
+    <p-card class="logbook-fuel-entry-list-card">
+        <p-table [value]="entries" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template #header>
+                <tr>
+                    <th>Date</th>
+                    <th>Mileage</th>
+                    <th>Trip</th>
+                    <th>Price</th>
+                    <th>Units</th>
+                    <th>Unit</th>
+                    <th>Comment</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-entry>
+                <tr>
+                    <td>{{ entry.date }}</td>
+                    <td>{{ entry.mileage }}</td>
+                    <td>{{ entry.trip }}</td>
+                    <td>{{ entry.price.total }}</td>
+                    <td>{{ entry.units }}</td>
+                    <td>{{ entry.unit }}</td>
+                    <td>{{ entry.comment }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+
+</div>
