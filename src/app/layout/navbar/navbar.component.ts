@@ -36,9 +36,6 @@ export class NavbarComponent implements OnInit {
   }
 
   onSelectionChange(value: any) {
-    console.log('Selected value:', value);
-    console.log('Selected id: ', value.value);
-    localStorage.setItem('currentVehicleId', value.value);
     this.selectionChange.emit(value);
   }
 

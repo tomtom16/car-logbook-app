@@ -9,6 +9,7 @@ import { CardModule } from 'primeng/card';
 import { AuthService } from '../../services/auth.service';
 import { Message } from 'primeng/message';
 import { Password } from 'primeng/password';
+import {APP_CONSTANTS} from "../../app.constants";
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ import { Password } from 'primeng/password';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  CONSTANTS = APP_CONSTANTS;
   username = '';
   password = '';
   error = '';
@@ -34,7 +36,7 @@ export class LoginComponent {
         console.log(res);
         this.auth.saveTokens(res.token, res.refreshToken);
         this.auth.saveUsername(res.username);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate([this.CONSTANTS.ROUTES.DASHBOARD]);
       },
       error: () => {
         this.error = 'Invalid credentials';
@@ -44,6 +46,6 @@ export class LoginComponent {
   }
 
   onRegister() {
-    this.router.navigate(['/register']);
+    this.router.navigate([this.CONSTANTS.ROUTES.REGISTER]);
   }
 }

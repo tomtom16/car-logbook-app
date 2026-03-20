@@ -16,10 +16,10 @@
             </ng-template>
             <ng-template #body let-entry>
                 <tr>
-                    <td>{{ entry.date }}</td>
+                    <td>{{ entry.date | date: CONSTANTS.MISC.DATEFORMAT }}</td>
                     <td>{{ entry.mileage }}</td>
-                    <td>{{ entry.trip }}</td>
-                    <td>{{ entry.price.total }}</td>
+                    <td>{{ entry.trip | number : '1.1-1' }}</td>
+                    <td>{{ entry.price.total | number : '1.2-2' }}</td>
                     <td>{{ entry.units }}</td>
                     <td>{{ entry.unit }}</td>
                     <td>{{ entry.price.perUnit }}</td>

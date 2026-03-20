@@ -8,15 +8,18 @@ import {DatePickerModule} from "primeng/datepicker";
 import {ApiService} from "../../../../services/api.service";
 import {LogbookFuelEntry} from "../../../../api/car-logbook";
 import {TableModule} from "primeng/table";
+import {DatePipe, DecimalPipe} from "@angular/common";
+import {APP_CONSTANTS} from "../../../../app.constants";
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [FormsModule, InputTextModule, ButtonModule, CardModule, DatePickerModule, TableModule],
+    imports: [FormsModule, InputTextModule, ButtonModule, CardModule, DatePickerModule, TableModule, DatePipe, DecimalPipe],
     templateUrl: './list-logbook-fuel-entries.component.html',
     styleUrls: ['./list-logbook-fuel-entries.component.css'],
 })
 export class ListLogbookFuelEntriesComponent implements OnInit {
+    CONSTANTS = APP_CONSTANTS;
     currentVehicleId: string;
     entries!: LogbookFuelEntry[];
 
@@ -45,5 +48,4 @@ export class ListLogbookFuelEntriesComponent implements OnInit {
             }
         });
     }
-
 }

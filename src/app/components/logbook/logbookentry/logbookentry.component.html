@@ -1,24 +1,24 @@
 <div class="p-col-12 p-md-4">
 
-  <p-card header="Current Logbook Entry" class="logbook-entry-card">
+    <p-card header="Current Logbook Entry" class="logbook-entry-card">
 
-    <div class="p-grid p-align-start">
+        <div class="p-grid p-align-start">
 
-      <div class="p-col-12 p-md-6">
-        <p><strong>From date:</strong> {{ data.startDate | date: dateFormat }}</p>
-        <p><strong>To date:</strong> {{ data.endDate | date: dateFormat }}</p>
-        <p><strong>Mileage start:</strong> {{ data.kmStart }}</p>
-        <p><strong>Mileage end:</strong> {{ data.kmEnd }}</p>
-        <p><strong>Trip:</strong> {{ data.trip }}</p>
-      </div>
+            <div class="p-col-12 p-md-6">
+                <p><strong>From date:</strong> {{ data.startDate | date: CONSTANTS.MISC.DATEFORMAT }}</p>
+                <p><strong>To date:</strong> {{ data.endDate | date: CONSTANTS.MISC.DATEFORMAT }}</p>
+                <p><strong>Mileage start:</strong> {{ data.kmStart }}</p>
+                <p><strong>Mileage end:</strong> {{ data.kmEnd }}</p>
+                <p><strong>Trip:</strong> {{ data.trip }}</p>
+            </div>
 
-      <div class="p-col-12 p-md-6">
-        <p><strong>Route:</strong> {{ data.route }}</p>
-        <p><strong>Comment:</strong> {{ data.comment }}</p>
-      </div>
+            <div class="p-col-12 p-md-6">
+                <p><strong>Route:</strong> {{ data.route }}</p>
+                <p><strong>Comment:</strong> {{ data.comment }}</p>
+            </div>
 
-    </div>
+        </div>
 
-  </p-card>
+    </p-card>
 
 </div>

@@ -10,16 +10,16 @@
                     <th>KM End</th>
                     <th>Trip</th>
                     <th>Route</th>
-                    <th>comment</th>
+                    <th>Comment</th>
                 </tr>
             </ng-template>
             <ng-template #body let-entry>
                 <tr>
-                    <td>{{ entry.startDate }}</td>
-                    <td>{{ entry.endDate }}</td>
+                    <td>{{ entry.startDate | date: CONSTANTS.MISC.DATEFORMAT }}</td>
+                    <td>{{ entry.endDate | date: CONSTANTS.MISC.DATEFORMAT }}</td>
                     <td>{{ entry.kmStart }}</td>
                     <td>{{ entry.kmEnd }}</td>
-                    <td>{{ entry.trip }}</td>
+                    <td>{{ entry.trip | number : '1.1-1' }}</td>
                     <td>{{ entry.route }}</td>
                     <td>{{ entry.comment }}</td>
                 </tr>
