@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import {InputTextModule} from 'primeng/inputtext';
@@ -24,6 +24,7 @@ export class ListLogbookEntriesComponent implements OnInit {
 
     constructor(
         private apiService: ApiService,
+        private cdr: ChangeDetectorRef
     ) {
         this.currentVehicleId = localStorage.getItem('currentVehicleId') as string;
     }
@@ -37,6 +38,7 @@ export class ListLogbookEntriesComponent implements OnInit {
             next: (res) => {
                 console.log(res);
                 this.entries = res;
+                this.cdr.detectChanges();
             },
             error: () => {
                 this.error = 'Error creating logbook entry';

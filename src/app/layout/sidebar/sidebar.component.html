@@ -1,3 +1,84 @@
-<div class="sidebar">
-  <p-panelMenu [model]="items"></p-panelMenu>
+<!-- Overlay -->
+@if (sidebarService.mobileVisible$ | async) {
+    <div class="overlay" (click)="sidebarService.closeMobile()"></div>
+}
+
+<div
+        class="sidebar"
+        [class.collapsed]="(sidebarService.collapsed$ | async)"
+        [class.mobile]="(sidebarService.mobileVisible$ | async)">
+
+    <!-- MENU -->
+    <ul class="menu">
+
+        @for (item of menu; track item.label) {
+
+            <!-- LEVEL 1 -->
+            <li>
+
+                <!-- Clickable parent -->
+                <div
+                        class="menu-item"
+                        (click)="item['children'] ? toggleGroup(item) : sidebarService.closeMobile()"
+                        [routerLink]="item.routerLink || null"
+                        routerLinkActive="active">
+
+                    <i [class]="item.icon"></i>
+
+                    @if ((sidebarService.mobileVisible$ | async) || !(sidebarService.collapsed$ | async)) {
+
+                        <span class="label">{{ item.label }}</span>
+
+                        @if (item.badge) {
+                            <p-badge [value]="item.badge" class="ml-auto"></p-badge>
+                        }
+
+                        @if (item['children']) {
+                            <i
+                                    class="pi pi-chevron-down expand-icon"
+                                    [class.rotated]="item.expanded">
+                            </i>
+                        }
+                    }
+                </div>
+
+                <!-- LEVEL 2 -->
+                @if (item['children'] && item.expanded) {
+                    <ul class="submenu">
+
+                        @for (child of item['children']; track child.label) {
+
+                            <li>
+                                <a
+                                        class="menu-item sub"
+                                        [routerLink]="child.routerLink"
+                                        routerLinkActive="active"
+                                        (click)="sidebarService.closeMobile()">
+
+                                    <i [class]="child.icon"></i>
+
+                                    @if ((sidebarService.mobileVisible$ | async) || !(sidebarService.collapsed$ | async)) {
+
+                                        <span class="label">{{ child.label }}</span>
+
+                                        @if (child.badge) {
+                                            <p-badge [value]="child.badge" class="ml-auto"></p-badge>
+                                        }
+
+                                    }
+
+                                </a>
+                            </li>
+
+                        }
+
+                    </ul>
+                }
+
+            </li>
+
+        }
+
+    </ul>
+
 </div>

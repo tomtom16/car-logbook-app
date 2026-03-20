@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -25,6 +25,7 @@ export class LoginComponent {
   constructor(
     private auth: AuthService,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   onLogin() {
@@ -37,6 +38,7 @@ export class LoginComponent {
       },
       error: () => {
         this.error = 'Invalid credentials';
+        this.cdr.detectChanges();
       },
     });
   }

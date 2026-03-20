@@ -1,29 +1,40 @@
 <p-toolbar>
 
-  <!-- Left side -->
-  <div class="p-toolbar-group-start">
-    <app-vehicle-picker
-      (selectionChange)="onSelectionChange($event)">
-    </app-vehicle-picker>
-  </div>
+    <!-- Left side -->
+    <div class="p-toolbar-group-start">
 
-  <div class="p-toolbar-group-center">
-    <h3 class="app-title">Logbook</h3>
-  </div>
+        <button
+                pButton
+                icon="pi pi-bars"
+                severity="secondary"
+                [text]="true"
+                (click)="toggleSidebar()">
+        </button>
+    </div>
 
-  <!-- Right side -->
-  <div class="p-toolbar-group-end">
+    <div class="p-toolbar-group-start">
+        <app-vehicle-picker
+                (selectionChange)="onSelectionChange($event)">
+        </app-vehicle-picker>
+    </div>
 
-    @if (username) {
-      <span class="username">{{ username }}</span>
-    }
+    <div class="p-toolbar-group-center">
+        <h3 class="app-title">Logbook</h3>
+    </div>
 
-    <p-button
-      label="Logout"
-      icon="pi pi-sign-out"
-      (onClick)="logout()">
-    </p-button>
+    <!-- Right side -->
+    <div class="p-toolbar-group-end">
 
-  </div>
+        @if (username) {
+            <span class="username">{{ username }}</span>
+        }
+
+        <p-button
+                label="Logout"
+                icon="pi pi-sign-out"
+                (onClick)="logout()">
+        </p-button>
+
+    </div>
 
 </p-toolbar>

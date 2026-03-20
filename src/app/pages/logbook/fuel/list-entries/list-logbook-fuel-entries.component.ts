@@ -1,6 +1,5 @@
-import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {Router} from '@angular/router';
 
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
@@ -24,9 +23,8 @@ export class ListLogbookFuelEntriesComponent implements OnInit {
     error = '';
 
     constructor(
-        private router: Router,
         private apiService: ApiService,
-        @Inject(LOCALE_ID) private locale: string
+        private cdr: ChangeDetectorRef
     ) {
         this.currentVehicleId = localStorage.getItem('currentVehicleId') as string;
     }
@@ -40,6 +38,7 @@ export class ListLogbookFuelEntriesComponent implements OnInit {
             next: (res) => {
                 console.log(res);
                 this.entries = res;
+                this.cdr.detectChanges();
             },
             error: () => {
                 this.error = 'Error creating logbook entry';
@@ -47,7 +46,4 @@ export class ListLogbookFuelEntriesComponent implements OnInit {
         });
     }
 
-    onHome() {
-        this.router.navigate(['/']);
-    }
 }

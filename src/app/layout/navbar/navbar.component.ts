@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 
 import { AuthService } from '../../services/auth.service';
 import { VehiclePickerComponent } from '../../components/vehicle/vehicle-picker/vehicle-picker.component';
+import {SidebarService} from "../../services/sidebar.service";
 
 @Component({
   selector: 'app-navbar',
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
+    public sidebarService: SidebarService
   ) {}
 
   ngOnInit() {
@@ -38,5 +40,9 @@ export class NavbarComponent implements OnInit {
     console.log('Selected id: ', value.value);
     localStorage.setItem('currentVehicleId', value.value);
     this.selectionChange.emit(value);
+  }
+
+  toggleSidebar() {
+    this.sidebarService.toggle();
   }
 }
