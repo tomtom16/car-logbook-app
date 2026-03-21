@@ -14,6 +14,7 @@ import {ApiService} from "../../../../services/api.service";
 import {UpdateService} from "../../../../services/update.service";
 import {LogbookFuelEntry, LogbookFuelEntryPrice} from "../../../../api/car-logbook";
 import {formatDate} from "@angular/common";
+import {APP_CONSTANTS} from "../../../../app.constants";
 
 @Component({
     selector: 'app-login',
@@ -81,19 +82,11 @@ export class CreateLogbookFuelEntryComponent {
             comment: this.comment
         };
 
-        for (let key in logbookFuelEntry) {
-            console.log(`${key}: ${(logbookFuelEntry as any)[key]}`);
-        }
-
-        for (let key in logbookFuelEntry.price) {
-            console.log(`${key}: ${(logbookFuelEntry.price as any)[key]}`);
-        }
-
         this.apiService.createLogbookFuelEntry(vehicleId, logbookFuelEntry).subscribe({
             next: (res) => {
-                console.log(res);
+                //console.log(res);
                 this.refreshService.triggerNewLogbookFuelEntryCreated(res);
-                this.router.navigate(['/dashboard']);
+                this.router.navigate([APP_CONSTANTS.ROUTES.REFUELING.LIST]);
             },
             error: () => {
                 this.error = 'Error creating logbook fuel entry';
@@ -102,6 +95,6 @@ export class CreateLogbookFuelEntryComponent {
     }
 
     onHome() {
-        this.router.navigate(['/']);
+        this.router.navigate([APP_CONSTANTS.ROUTES.HOME]);
     }
 }

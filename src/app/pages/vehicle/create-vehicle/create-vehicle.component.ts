@@ -15,6 +15,7 @@ import {Checkbox} from "primeng/checkbox";
 import {DatePickerModule} from "primeng/datepicker";
 import {formatDate} from "@angular/common";
 import {UpdateService} from "../../../services/update.service";
+import {APP_CONSTANTS} from "../../../app.constants";
 
 @Component({
     selector: 'app-login',
@@ -91,7 +92,7 @@ export class CreateVehicleComponent {
             next: (res) => {
                 console.log(res);
                 this.refreshService.triggerNewVehicleCreated(res);
-                this.router.navigate(['/dashboard']);
+                this.router.navigate([APP_CONSTANTS.ROUTES.DASHBOARD]);
             },
             error: () => {
                 this.error = 'Error creating vehicle';
@@ -100,6 +101,6 @@ export class CreateVehicleComponent {
     }
 
     onHome() {
-        this.router.navigate(['/']);
+        this.router.navigate([APP_CONSTANTS.ROUTES.HOME]);
     }
 }

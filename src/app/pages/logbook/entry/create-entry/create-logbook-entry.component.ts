@@ -13,6 +13,7 @@ import {ApiService} from "../../../../services/api.service";
 import {UpdateService} from "../../../../services/update.service";
 import {formatDate} from "@angular/common";
 import {LogbookEntry} from "../../../../api/car-logbook";
+import {APP_CONSTANTS} from "../../../../app.constants";
 
 @Component({
     selector: 'app-login',
@@ -22,7 +23,6 @@ import {LogbookEntry} from "../../../../api/car-logbook";
     styleUrls: ['./create-logbook-entry.component.css'],
 })
 export class CreateLogbookEntryComponent implements OnInit {
-    currentVehicleId: string;
     hourFormat: string = "24";
     startDate: Date = new Date();
     endDate: Date = new Date();
@@ -38,12 +38,11 @@ export class CreateLogbookEntryComponent implements OnInit {
         private apiService: ApiService,
         private refreshService: UpdateService,
         @Inject(LOCALE_ID) private locale: string
-    ) {
-        this.currentVehicleId = localStorage.getItem('currentVehicleId') as string;
-    }
+    ) {}
 
     ngOnInit(): void {
-        this.apiService.getVehicle(this.currentVehicleId).subscribe({
+        let currentVehicleId = localStorage.getItem('currentVehicleId') as string;
+        this.apiService.getVehicle(currentVehicleId).subscribe({
             next: (res) => {
                 console.log(res);
                 if (!!res.currentMileage) {
@@ -81,15 +80,11 @@ export class CreateLogbookEntryComponent implements OnInit {
             comment: this.comment
         };
 
-        for (let key in logbookEntry) {
-            console.log(`${key}: ${(logbookEntry as any)[key]}`);
-        }
-
         this.apiService.createLogbookEntry(vehicleId, logbookEntry).subscribe({
             next: (res) => {
-                console.log(res);
+                //console.log(res);
                 this.refreshService.triggerNewLogbookEntryCreated(res);
-                this.router.navigate(['/logbook']);
+                this.router.navigate([APP_CONSTANTS.ROUTES.LOGBOOK.LIST]);
             },
             error: () => {
                 this.error = 'Error creating logbook entry';
@@ -98,6 +93,6 @@ export class CreateLogbookEntryComponent implements OnInit {
     }
 
     onHome() {
-        this.router.navigate(['/']);
+        this.router.navigate([APP_CONSTANTS.ROUTES.HOME]);
     }
 }

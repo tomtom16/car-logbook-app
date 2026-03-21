@@ -17,7 +17,6 @@ import {APP_CONSTANTS} from "../../app.constants";
     styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-    CONSTANTS = APP_CONSTANTS;
     username: string | null = '';
 
     constructor(
@@ -33,7 +32,7 @@ export class NavbarComponent implements OnInit {
 
     logout() {
         this.auth.logout();
-        this.router.navigate([this.CONSTANTS.ROUTES.HOME]);
+        this.router.navigate([APP_CONSTANTS.ROUTES.HOME]);
     }
 
     toggleSidebar() {
