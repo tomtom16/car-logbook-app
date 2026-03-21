@@ -92,7 +92,7 @@ export class CreateLogbookFuelEntryComponent {
         this.apiService.createLogbookFuelEntry(vehicleId, logbookFuelEntry).subscribe({
             next: (res) => {
                 console.log(res);
-                this.refreshService.triggerDashboardRefresh();
+                this.refreshService.triggerNewLogbookFuelEntryCreated(res);
                 this.router.navigate(['/dashboard']);
             },
             error: () => {

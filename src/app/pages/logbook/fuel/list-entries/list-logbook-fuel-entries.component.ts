@@ -10,6 +10,8 @@ import {LogbookFuelEntry} from "../../../../api/car-logbook";
 import {TableModule} from "primeng/table";
 import {DatePipe, DecimalPipe} from "@angular/common";
 import {APP_CONSTANTS} from "../../../../app.constants";
+import {UpdateService} from "../../../../services/update.service";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'app-login',
@@ -20,31 +22,42 @@ import {APP_CONSTANTS} from "../../../../app.constants";
 })
 export class ListLogbookFuelEntriesComponent implements OnInit {
     CONSTANTS = APP_CONSTANTS;
-    currentVehicleId: string;
     entries!: LogbookFuelEntry[];
 
     error = '';
 
+    private newLogbookFuelEntrySub!: Subscription;
+    private currentVehicleIdChangedSub!: Subscription;
+
     constructor(
         private apiService: ApiService,
+        private refreshService: UpdateService,
         private cdr: ChangeDetectorRef
     ) {
-        this.currentVehicleId = localStorage.getItem('currentVehicleId') as string;
     }
 
     ngOnInit(): void {
         this.loadData();
+
+        this.newLogbookFuelEntrySub = this.refreshService.newLogbookFuelEntryCreated$.subscribe(() => {
+            this.loadData();
+        });
+
+        this.currentVehicleIdChangedSub = this.refreshService.currentVehicleIdChanged$.subscribe(() => {
+            this.loadData();
+        })
     }
 
     loadData() {
-        this.apiService.getLogbookFuelEntries(this.currentVehicleId).subscribe({
+        let currentVehicleId = localStorage.getItem('currentVehicleId') as string;
+        this.apiService.getLogbookFuelEntries(currentVehicleId).subscribe({
             next: (res) => {
                 console.log(res);
                 this.entries = res;
                 this.cdr.detectChanges();
             },
             error: () => {
-                this.error = 'Error creating logbook entry';
+                this.error = 'Error loading logbook entries';
             }
         });
     }

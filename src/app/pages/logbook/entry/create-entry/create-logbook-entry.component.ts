@@ -88,7 +88,7 @@ export class CreateLogbookEntryComponent implements OnInit {
         this.apiService.createLogbookEntry(vehicleId, logbookEntry).subscribe({
             next: (res) => {
                 console.log(res);
-                this.refreshService.triggerDashboardRefresh();
+                this.refreshService.triggerNewLogbookEntryCreated(res);
                 this.router.navigate(['/logbook']);
             },
             error: () => {

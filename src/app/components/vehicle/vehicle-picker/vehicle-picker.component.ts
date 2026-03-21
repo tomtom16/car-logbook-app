@@ -34,8 +34,8 @@ export class VehiclePickerComponent implements OnInit {
   ngOnInit(): void {
     this.loadOptions();
 
-    this.sub = this.refreshService.refreshDashboard$.subscribe(() => {
-      console.log('Dashboard refresh triggered!');
+    this.sub = this.refreshService.newVehicleCreated$.subscribe(() => {
+      console.log('New vehicle created, loading all vehicles!');
       this.loadOptions();
     });
   }
@@ -59,13 +59,14 @@ export class VehiclePickerComponent implements OnInit {
         this.cdr.detectChanges();
       },
       error: () => {
-        this.error = 'Failed to load options';
+        this.error = 'Failed to load vehicles';
         this.loading = false;
       },
     });
   }
 
   onChange(value: any) {
-    this.selectionChange.emit(value);
+    localStorage.setItem('currentVehicleId', value.value);
+    this.refreshService.triggerCurrentVehicleIdChanged(value.value);
   }
 }

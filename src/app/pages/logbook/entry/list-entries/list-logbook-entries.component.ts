@@ -22,31 +22,34 @@ import {UpdateService} from "../../../../services/update.service";
 })
 export class ListLogbookEntriesComponent implements OnInit {
     CONSTANTS = APP_CONSTANTS;
-    currentVehicleId: string;
     entries!: LogbookEntry[];
 
     error = '';
 
-    private sub!: Subscription;
+    private newLogbookEntrySub!: Subscription;
+    private currentVehicleIdChangedSub!: Subscription;
 
     constructor(
         private apiService: ApiService,
         private refreshService: UpdateService,
         private cdr: ChangeDetectorRef
-    ) {
-        this.currentVehicleId = localStorage.getItem('currentVehicleId') as string;
-    }
+    ) {}
 
     ngOnInit(): void {
         this.loadData();
 
-        this.sub = this.refreshService.refreshDashboard$.subscribe(() => {
+        this.newLogbookEntrySub = this.refreshService.newLogbookEntryCreated$.subscribe(() => {
             this.loadData();
         });
+
+        this.currentVehicleIdChangedSub = this.refreshService.currentVehicleIdChanged$.subscribe(() => {
+            this.loadData();
+        })
     }
 
     loadData() {
-        this.apiService.getLogbookEntries(this.currentVehicleId).subscribe({
+        let currentVehicleId = localStorage.getItem('currentVehicleId') as string;
+        this.apiService.getLogbookEntries(currentVehicleId).subscribe({
             next: (res) => {
                 console.log(res);
                 this.entries = res;

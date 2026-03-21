@@ -51,8 +51,8 @@ export class DashboardComponent implements OnInit {
     this.username = this.auth.getUsername();
     this.loadData();
 
-    this.sub = this.refreshService.refreshDashboard$.subscribe(() => {
-      console.log('Dashboard refresh triggered!');
+    this.sub = this.refreshService.currentVehicleIdChanged$.subscribe(() => {
+      console.log('Current vehicle id has changed, loading data!');
       this.loadData();
     });
   }

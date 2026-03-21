@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Inject, LOCALE_ID, Output} from '@angular/core';
+import {Component, Inject, LOCALE_ID} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -63,7 +63,7 @@ export class CreateVehicleComponent {
         }
         let yoc: string | undefined;
         if (!!this.yearOfConstruction) {
-            yoc = formatDate(this.yearOfConstruction,'yyyy-MM-dd',this.locale);
+            yoc = formatDate(this.yearOfConstruction, 'yyyy-MM-dd', this.locale);
         }
 
         let vehicle: Vehicle = {
@@ -90,7 +90,7 @@ export class CreateVehicleComponent {
         this.apiService.createVehicle(vehicle).subscribe({
             next: (res) => {
                 console.log(res);
-                this.refreshService.triggerDashboardRefresh();
+                this.refreshService.triggerNewVehicleCreated(res);
                 this.router.navigate(['/dashboard']);
             },
             error: () => {

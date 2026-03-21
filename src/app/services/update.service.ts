@@ -1,15 +1,34 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
+import {LogbookEntry, LogbookFuelEntry, Vehicle} from "../api/car-logbook";
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class UpdateService {
-  private refreshDashboardSource = new Subject<void>();
+    private currentVehicleIdChangedSource = new Subject<string>();
+    private newVehicleCreatedSource = new Subject<Vehicle>();
+    private newLogbookEntryCreatedSource = new Subject<LogbookEntry>();
+    private newLogbookFuelEntryCreatedSource = new Subject<LogbookFuelEntry>();
 
-  refreshDashboard$ = this.refreshDashboardSource.asObservable();
+    currentVehicleIdChanged$ = this.currentVehicleIdChangedSource.asObservable();
+    newVehicleCreated$ = this.newVehicleCreatedSource.asObservable();
+    newLogbookEntryCreated$ = this.newLogbookEntryCreatedSource.asObservable();
+    newLogbookFuelEntryCreated$ = this.newLogbookFuelEntryCreatedSource.asObservable();
 
-  triggerDashboardRefresh() {
-    this.refreshDashboardSource.next();
-  }
+    triggerCurrentVehicleIdChanged(vehicleId: string) {
+        this.currentVehicleIdChangedSource.next(vehicleId);
+    }
+
+    triggerNewVehicleCreated(vehicle: Vehicle) {
+        this.newVehicleCreatedSource.next(vehicle);
+    }
+
+    triggerNewLogbookEntryCreated(entry: LogbookEntry) {
+        this.newLogbookEntryCreatedSource.next(entry);
+    }
+
+    triggerNewLogbookFuelEntryCreated(entry: LogbookFuelEntry) {
+        this.newLogbookFuelEntryCreatedSource.next(entry);
+    }
 }
