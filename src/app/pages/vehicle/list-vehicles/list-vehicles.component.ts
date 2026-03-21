@@ -12,11 +12,12 @@ import {Vehicle} from "../../../api/car-logbook";
 import {APP_CONSTANTS} from "../../../app.constants";
 import {ApiService} from "../../../services/api.service";
 import {UpdateService} from "../../../services/update.service";
+import {Checkbox} from "primeng/checkbox";
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [FormsModule, InputTextModule, ButtonModule, CardModule, DatePickerModule, TableModule, DatePipe, DecimalPipe],
+    imports: [FormsModule, InputTextModule, ButtonModule, CardModule, DatePickerModule, TableModule, DatePipe, DecimalPipe, Checkbox],
     templateUrl: './list-vehicles.component.html',
     styleUrls: ['./list-vehicles.component.css'],
 })
