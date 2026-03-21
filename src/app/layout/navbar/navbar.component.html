@@ -1,20 +1,24 @@
-<p-toolbar>
+<p-toolbar class="navbar">
 
     <!-- Left side -->
-    <div class="p-toolbar-group-start">
+    <div class="p-toolbar-group-start collapse-vehicle-picker-wrapper"
+         [class.collapsed]="(sidebarService.collapsed$ | async)"
+         [class.mobile]="(sidebarService.mobileVisible$ | async)">
+        <div class="collapse-button-wrapper">
+            <button
+                    pButton
+                    icon="pi pi-bars"
+                    severity="secondary"
+                    [text]="true"
+                    (click)="toggleSidebar()">
+            </button>
+        </div>
 
-        <button
-                pButton
-                icon="pi pi-bars"
-                severity="secondary"
-                [text]="true"
-                (click)="toggleSidebar()">
-        </button>
+        <div class="vehicle-picker-wrapper">
+            <app-vehicle-picker />
+        </div>
     </div>
 
-    <div class="p-toolbar-group-start">
-        <app-vehicle-picker />
-    </div>
 
     <div class="p-toolbar-group-center">
         <h3 class="app-title">Logbook</h3>

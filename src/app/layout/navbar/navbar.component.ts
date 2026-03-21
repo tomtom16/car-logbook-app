@@ -8,11 +8,12 @@ import {AuthService} from '../../services/auth.service';
 import {VehiclePickerComponent} from '../../components/vehicle/vehicle-picker/vehicle-picker.component';
 import {SidebarService} from "../../services/sidebar.service";
 import {APP_CONSTANTS} from "../../app.constants";
+import {AsyncPipe} from "@angular/common";
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
-    imports: [ToolbarModule, ButtonModule, VehiclePickerComponent],
+    imports: [ToolbarModule, ButtonModule, VehiclePickerComponent, AsyncPipe],
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css'],
 })

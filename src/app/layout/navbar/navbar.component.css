@@ -13,6 +13,24 @@
   padding: 10px 16px;
   border-bottom: 1px solid #ddd;
   background: white;
+  transition: all 0.3s ease;
+}
+
+.collapse-vehicle-picker-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.collapse-vehicle-picker-wrapper.collapsed .collapse-button-wrapper {
+  width: 80px;
+}
+
+.collapse-button-wrapper {
+  width: 270px;
+}
+
+.vehicle-picker-wrapper {
+
 }
 
 .flex-grow-1 {
