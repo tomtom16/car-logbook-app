@@ -21,7 +21,7 @@
                     <td>{{ vehicle.model }}</td>
                     <td>{{ vehicle.licensePlate }}</td>
                     <td>{{ vehicle.yearOfConstruction }}</td>
-                    <td>{{ vehicle.gasoline }}</td>
+                    <td><p-badge value="{{ vehicle.gasoline }}" [severity]="badgeService.getSeverity(vehicle.gasoline)"></p-badge></td>
                     <td>{{ vehicle.power.kw }} / {{ vehicle.power.hp }}</td>
                     <td>{{ vehicle.currentAge }}</td>
                     <td>{{ vehicle.currentMileage }}</td>

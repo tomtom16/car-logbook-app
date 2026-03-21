@@ -8,16 +8,18 @@ import {DatePickerModule} from "primeng/datepicker";
 import {TableModule} from "primeng/table";
 import {DatePipe, DecimalPipe} from "@angular/common";
 import {Subscription} from "rxjs";
-import {Vehicle} from "../../../api/car-logbook";
+import {Gasoline, Vehicle} from "../../../api/car-logbook";
 import {APP_CONSTANTS} from "../../../app.constants";
 import {ApiService} from "../../../services/api.service";
 import {UpdateService} from "../../../services/update.service";
 import {Checkbox} from "primeng/checkbox";
+import {Badge} from "primeng/badge";
+import {BadgeService, BadgeSeverity} from "../../../services/badge.service";
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [FormsModule, InputTextModule, ButtonModule, CardModule, DatePickerModule, TableModule, DatePipe, DecimalPipe, Checkbox],
+    imports: [FormsModule, InputTextModule, ButtonModule, CardModule, DatePickerModule, TableModule, Checkbox, Badge],
     templateUrl: './list-vehicles.component.html',
     styleUrls: ['./list-vehicles.component.css'],
 })
@@ -31,6 +33,7 @@ export class ListVehiclesComponent implements OnInit {
 
     constructor(
         private apiService: ApiService,
+        public badgeService: BadgeService,
         private refreshService: UpdateService,
         private cdr: ChangeDetectorRef
     ) {

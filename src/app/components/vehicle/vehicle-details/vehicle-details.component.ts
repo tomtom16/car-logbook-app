@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Vehicle } from '../../../api/car-logbook';
 import { Card } from 'primeng/card';
 import { Badge } from 'primeng/badge';
+import {BadgeService} from "../../../services/badge.service";
 
 @Component({
   selector: 'app-vehicle-details',
@@ -12,7 +13,9 @@ import { Badge } from 'primeng/badge';
 export class VehicleDetailsComponent implements OnInit {
   @Input() data: Vehicle = {};
 
-  constructor() {}
+  constructor(
+      public badgeService: BadgeService
+  ) {}
 
   ngOnInit(): void {}
 }
