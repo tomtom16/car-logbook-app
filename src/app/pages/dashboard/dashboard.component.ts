@@ -9,7 +9,7 @@ import { ProgressSpinner } from 'primeng/progressspinner';
 import { Message } from 'primeng/message';
 import { CommonModule } from '@angular/common';
 import { VehicleDetailsComponent } from '../../components/vehicle/vehicle-details/vehicle-details.component';
-import { Vehicle } from '../../api/car-logbook';
+import {LogbookFuelEntry, Vehicle} from '../../api/car-logbook';
 import { LogbookentryComponent } from '../../components/logbook/logbookentry/logbookentry.component';
 import { LogbookfuelentryComponent } from '../../components/logbook/logbookfuelentry/logbookfuelentry.component';
 import { Observable, Subscription } from 'rxjs';
@@ -36,7 +36,7 @@ import {ConsumptionChartComponent} from "../../components/consumption-chart/cons
 })
 export class DashboardComponent implements OnInit {
 
-  consumptionChartEntries: any[] = [];
+  consumptionChartEntries: LogbookFuelEntry[] = [];
 
   username: string = '';
   currentVehicleText: string = '';
@@ -58,12 +58,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.username = this.auth.getUsername();
     this.loadData();
-    this.loadAverageConsumptionChartEntries();
+    this.cdr.detectChanges();
 
     this.sub = this.refreshService.currentVehicleIdChanged$.subscribe(() => {
       console.log('Current vehicle id has changed, loading data!');
       this.loadData();
-      this.loadAverageConsumptionChartEntries();
+      this.cdr.detectChanges();
     });
   }
 
@@ -107,18 +107,28 @@ export class DashboardComponent implements OnInit {
         console.log(this.error);
       },
     });
+
+    this.loadAverageConsumptionChartEntries();
   }
 
   loadAverageConsumptionChartEntries() {
-    let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID) as string;
-    this.apiService.getLogbookFuelEntries(currentVehicleId).subscribe({
-      next: (res) => {
-        this.consumptionChartEntries = res;
-        this.cdr.detectChanges();
-      },
-      error: () => {
-        console.log('error loading average consumption entries');
-      }
-    })
+    let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID);
+
+    if (currentVehicleId != null) {
+      this.apiService.getLogbookFuelEntries(currentVehicleId).subscribe({
+        next: (res) => {
+          this.consumptionChartEntries = res;
+          this.cdr.detectChanges();
+        },
+        complete: () => {
+          this.cdr.detectChanges();
+        },
+        error: () => {
+          console.log('error loading average consumption entries');
+        }
+      });
+    } else {
+      console.log('current vehicle id is null - not loading fuel entries');
+    }
   }
 }
