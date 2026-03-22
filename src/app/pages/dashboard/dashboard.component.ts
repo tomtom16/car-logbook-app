@@ -79,8 +79,9 @@ export class DashboardComponent implements OnInit {
         console.log(this.currentVehicle);
         console.log(this.currentVehicleText);
 
-        if (!!res && res.id != null) {
+        if (!!res && res.id != null && res.id != currentVehicleId) {
           localStorage.setItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID, res.id);
+          this.refreshService.triggerCurrentVehicleIdChanged(res.id);
         }
 
         this.cdr.detectChanges();

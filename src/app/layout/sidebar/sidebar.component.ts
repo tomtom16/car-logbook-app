@@ -34,6 +34,11 @@ export class SidebarComponent implements OnInit {
             console.log('Vehicle created, need to enable pages!');
             this.checkDisablesPages();
         });
+
+        this.sub = this.refreshService.currentVehicleIdChanged$.subscribe(() => {
+            console.log('Vehicle changed, need to enable pages!');
+            this.checkDisablesPages();
+        });
     }
 
     checkDisablesPages() {
