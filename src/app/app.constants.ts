@@ -18,7 +18,8 @@ export const APP_CONSTANTS = {
         }
     },
     MISC: {
-        DATEFORMAT: 'dd.MM.yyyy HH:mm Z',
+        DATEFORMAT_EXTENDED: 'dd.MM.yyyy HH:mm Z',
+        DATEFORMAT_SIMPLE: 'dd.MM.yyyy',
         CURRENT_VEHICLE_ID: 'currentVehicleId',
         TOKEN: 'token',
         REFRESH_TOKEN: 'refreshToken',

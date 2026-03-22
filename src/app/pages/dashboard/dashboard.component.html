@@ -36,6 +36,10 @@
                     </app-logbookfuelentry>
                 }
 
+                @if (consumptionChartEntries !== undefined && consumptionChartEntries.length > 0) {
+                    <app-consumption-chart [entries]="consumptionChartEntries"></app-consumption-chart>
+                }
+
             </div>
         }
 

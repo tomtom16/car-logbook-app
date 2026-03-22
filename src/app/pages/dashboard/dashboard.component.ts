@@ -15,6 +15,7 @@ import { LogbookfuelentryComponent } from '../../components/logbook/logbookfuele
 import { Observable, Subscription } from 'rxjs';
 import { UpdateService } from '../../services/update.service';
 import {APP_CONSTANTS} from "../../app.constants";
+import {ConsumptionChartComponent} from "../../components/consumption-chart/consumption-chart.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -28,15 +29,20 @@ import {APP_CONSTANTS} from "../../app.constants";
     VehicleDetailsComponent,
     LogbookentryComponent,
     LogbookfuelentryComponent,
+    ConsumptionChartComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+
+  consumptionChartEntries: any[] = [];
+
   username: string = '';
   currentVehicleText: string = '';
   currentVehicle: Vehicle | null = null;
   noVehiclesYet: boolean = false;
+
   loading = true;
   error = '';
 
@@ -52,10 +58,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.username = this.auth.getUsername();
     this.loadData();
+    this.loadAverageConsumptionChartEntries();
 
     this.sub = this.refreshService.currentVehicleIdChanged$.subscribe(() => {
       console.log('Current vehicle id has changed, loading data!');
       this.loadData();
+      this.loadAverageConsumptionChartEntries();
     });
   }
 
@@ -99,5 +107,18 @@ export class DashboardComponent implements OnInit {
         console.log(this.error);
       },
     });
+  }
+
+  loadAverageConsumptionChartEntries() {
+    let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID) as string;
+    this.apiService.getLogbookFuelEntries(currentVehicleId).subscribe({
+      next: (res) => {
+        this.consumptionChartEntries = res;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        console.log('error loading average consumption entries');
+      }
+    })
   }
 }
