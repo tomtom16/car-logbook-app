@@ -12,7 +12,15 @@
 
       <p-message severity="error" text="{{ error }}"></p-message>
 
-    } @else {
+    } @else if (noVehicles) {
+
+        <p>No vehicles found!</p>
+
+    } @else if (oneVehicle) {
+
+        <p>{{ options[0].label }}</p>
+
+    } @else if (multipleVehicles) {
 
       <p-select
         [options]="options"

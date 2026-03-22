@@ -37,7 +37,7 @@ export class SidebarComponent implements OnInit {
     }
 
     checkDisablesPages() {
-        let currentVehicleId = localStorage.getItem('currentVehicleId');
+        let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID);
         this.disablePages = currentVehicleId == null;
         this.cdr.detectChanges();
     }

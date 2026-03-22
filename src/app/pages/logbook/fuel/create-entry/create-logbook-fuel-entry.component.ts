@@ -57,7 +57,7 @@ export class CreateLogbookFuelEntryComponent {
     }
 
     onCreate() {
-        let vehicleId = localStorage.getItem('currentVehicleId') as string;
+        let vehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID) as string;
 
         let entryDate: string | undefined;
         if (!!this.date) {

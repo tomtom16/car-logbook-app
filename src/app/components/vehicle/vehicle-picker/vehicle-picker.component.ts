@@ -1,72 +1,95 @@
-import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ApiService } from '../../../services/api.service';
-import { ProgressSpinner } from 'primeng/progressspinner';
-import { Message } from 'primeng/message';
-import { FormsModule } from '@angular/forms';
-import { Select } from 'primeng/select';
-import { Vehicle } from '../../../api/car-logbook';
+import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ApiService} from '../../../services/api.service';
+import {ProgressSpinner} from 'primeng/progressspinner';
+import {Message} from 'primeng/message';
+import {FormsModule} from '@angular/forms';
+import {Select} from 'primeng/select';
+import {Vehicle} from '../../../api/car-logbook';
 import {Subscription} from "rxjs";
 import {UpdateService} from "../../../services/update.service";
+import {APP_CONSTANTS} from "../../../app.constants";
 
 @Component({
-  selector: 'app-vehicle-picker',
-  imports: [ProgressSpinner, Message, FormsModule, Select],
-  templateUrl: './vehicle-picker.component.html',
-  styleUrl: './vehicle-picker.component.css',
+    selector: 'app-vehicle-picker',
+    imports: [ProgressSpinner, Message, FormsModule, Select],
+    templateUrl: './vehicle-picker.component.html',
+    styleUrl: './vehicle-picker.component.css',
 })
 export class VehiclePickerComponent implements OnInit {
-  options: any[] = [];
-  selectedOption: any;
+    options: any[] = [];
+    selectedOption: any;
 
-  loading = true;
-  error = '';
+    noVehicles: boolean = false;
+    oneVehicle: boolean = false;
+    multipleVehicles: boolean = false;
 
-  private sub!: Subscription;
+    loading = true;
+    error = '';
 
-  @Output() selectionChange = new EventEmitter<any>();
+    private sub!: Subscription;
 
-  constructor(
-    private apiService: ApiService,
-    private cdr: ChangeDetectorRef,
-    private refreshService: UpdateService,
-  ) {}
+    @Output() selectionChange = new EventEmitter<any>();
 
-  ngOnInit(): void {
-    this.loadOptions();
+    constructor(
+        private apiService: ApiService,
+        private cdr: ChangeDetectorRef,
+        private refreshService: UpdateService,
+    ) {
+    }
 
-    this.sub = this.refreshService.newVehicleCreated$.subscribe(() => {
-      console.log('New vehicle created, loading all vehicles!');
-      this.loadOptions();
-    });
-  }
+    ngOnInit(): void {
+        this.loadOptions();
 
-  loadOptions() {
-    this.loading = true;
+        this.sub = this.refreshService.newVehicleCreated$.subscribe(() => {
+            this.loadOptions();
+        });
+    }
 
-    this.apiService.getVehicles().subscribe({
-      next: (res) => {
-        this.options = res.map((item: Vehicle) => ({
-          label: `${item.make} ${item.model} (${item.licensePlate})`,
-          value: item.id,
-        }));
+    loadOptions() {
+        this.loading = true;
 
-        let currentVehicleId = localStorage.getItem('currentVehicleId');
-        if (currentVehicleId != null) {
-          this.selectedOption = this.options.find((o) => o.value === currentVehicleId);
+        this.apiService.getVehicles().subscribe({
+            next: (res) => {
+                this.setVehicleStatus(res);
+
+                if (!!res) {
+                    this.options = res.map((item: Vehicle) => ({
+                        label: `${item.make} ${item.model} (${item.licensePlate})`,
+                        value: item.id,
+                    }));
+
+                    let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID);
+                    if (currentVehicleId != null) {
+                        this.selectedOption = this.options.find((o) => o.value === currentVehicleId);
+                    }
+                }
+
+                this.loading = false;
+                this.cdr.detectChanges();
+            },
+            error: () => {
+                this.error = 'Failed to load vehicles';
+                this.loading = false;
+            },
+        });
+    }
+
+    setVehicleStatus(vehicles: Vehicle[]) {
+        this.noVehicles = false;
+        this.oneVehicle = false;
+        this.multipleVehicles = false;
+
+        if (vehicles === undefined || vehicles.length == 0) {
+            this.noVehicles = true;
+        } else if (!!vehicles && vehicles.length == 1) {
+            this.oneVehicle = true;
+        } else {
+            this.multipleVehicles = true;
         }
+    }
 
-        this.loading = false;
-        this.cdr.detectChanges();
-      },
-      error: () => {
-        this.error = 'Failed to load vehicles';
-        this.loading = false;
-      },
-    });
-  }
-
-  onChange(value: any) {
-    localStorage.setItem('currentVehicleId', value.value);
-    this.refreshService.triggerCurrentVehicleIdChanged(value.value);
-  }
+    onChange(value: any) {
+        localStorage.setItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID, value.value);
+        this.refreshService.triggerCurrentVehicleIdChanged(value.value);
+    }
 }

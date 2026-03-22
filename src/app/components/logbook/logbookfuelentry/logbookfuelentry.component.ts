@@ -12,9 +12,8 @@ import {APP_CONSTANTS} from "../../../app.constants";
 })
 export class LogbookfuelentryComponent {
   CONSTANTS = APP_CONSTANTS;
+
   @Input() data: LogbookFuelEntry = {};
 
   constructor() {}
-
-  protected readonly APP_CONSTANTS = APP_CONSTANTS;
 }

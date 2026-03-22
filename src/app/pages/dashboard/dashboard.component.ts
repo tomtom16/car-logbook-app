@@ -14,6 +14,7 @@ import { LogbookentryComponent } from '../../components/logbook/logbookentry/log
 import { LogbookfuelentryComponent } from '../../components/logbook/logbookfuelentry/logbookfuelentry.component';
 import { Observable, Subscription } from 'rxjs';
 import { UpdateService } from '../../services/update.service';
+import {APP_CONSTANTS} from "../../app.constants";
 
 @Component({
   selector: 'app-dashboard',
@@ -61,7 +62,7 @@ export class DashboardComponent implements OnInit {
   loadData() {
     this.loading = true;
 
-    let currentVehicleId = localStorage.getItem('currentVehicleId');
+    let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID);
     let currentVehicleObs: Observable<Vehicle>;
 
     if (currentVehicleId != null) {
@@ -79,7 +80,7 @@ export class DashboardComponent implements OnInit {
         console.log(this.currentVehicleText);
 
         if (!!res && res.id != null) {
-          localStorage.setItem('currentVehicleId', res.id);
+          localStorage.setItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID, res.id);
         }
 
         this.cdr.detectChanges();

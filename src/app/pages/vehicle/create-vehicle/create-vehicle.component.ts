@@ -92,9 +92,9 @@ export class CreateVehicleComponent {
             next: (res) => {
                 console.log(res);
 
-                let currentVehicleId = localStorage.getItem('currentVehicleId');
+                let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID);
                 if (currentVehicleId == null && !!res.id) {
-                    localStorage.setItem('currentVehicleId', res.id);
+                    localStorage.setItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID, res.id);
                 }
 
                 this.refreshService.triggerNewVehicleCreated(res);

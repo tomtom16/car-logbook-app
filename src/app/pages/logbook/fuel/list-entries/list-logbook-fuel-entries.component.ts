@@ -49,7 +49,7 @@ export class ListLogbookFuelEntriesComponent implements OnInit {
     }
 
     loadData() {
-        let currentVehicleId = localStorage.getItem('currentVehicleId') as string;
+        let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID) as string;
         this.apiService.getLogbookFuelEntries(currentVehicleId).subscribe({
             next: (res) => {
                 console.log(res);

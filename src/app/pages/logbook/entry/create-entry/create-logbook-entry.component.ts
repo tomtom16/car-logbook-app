@@ -41,7 +41,7 @@ export class CreateLogbookEntryComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        let currentVehicleId = localStorage.getItem('currentVehicleId') as string;
+        let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID) as string;
         this.apiService.getVehicle(currentVehicleId).subscribe({
             next: (res) => {
                 console.log(res);
@@ -57,7 +57,7 @@ export class CreateLogbookEntryComponent implements OnInit {
     }
 
     onCreate() {
-        let vehicleId = localStorage.getItem('currentVehicleId') as string;
+        let vehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID) as string;
 
         let entryStartDate: string | undefined;
         if (!!this.startDate) {
