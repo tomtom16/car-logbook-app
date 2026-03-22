@@ -91,6 +91,12 @@ export class CreateVehicleComponent {
         this.apiService.createVehicle(vehicle).subscribe({
             next: (res) => {
                 console.log(res);
+
+                let currentVehicleId = localStorage.getItem('currentVehicleId');
+                if (currentVehicleId == null && !!res.id) {
+                    localStorage.setItem('currentVehicleId', res.id);
+                }
+
                 this.refreshService.triggerNewVehicleCreated(res);
                 this.router.navigate([APP_CONSTANTS.ROUTES.DASHBOARD]);
             },

@@ -1,43 +1,52 @@
 <div class="dashboard">
-  <p-card header="Dashboard">
-    <h2>Welcome {{ username }}</h2>
+    <p-card header="Dashboard">
+        <h2>Welcome {{ username }}</h2>
 
-    <!-- Loading -->
-    @if (loading) {
-      <div class="center">
-        <p-progressSpinner></p-progressSpinner>
-      </div>
-    }
-
-    <!-- Error -->
-    @if (!loading && error) {
-      <p-message severity="error" text="{{ error }}"></p-message>
-    }
-
-    <!-- Data -->
-    @if (!loading && !error && currentVehicle) {
-
-      <div class="p-grid p-m-3 p-justify-center">
-
-        <p>Current Vehicle: {{ currentVehicleText }}</p>
-        <app-vehicle-details
-          [data]="currentVehicle">
-        </app-vehicle-details>
-
-        @if (currentVehicle.lastLogbookEntry) {
-          <app-logbookentry
-            [data]="currentVehicle.lastLogbookEntry">
-          </app-logbookentry>
+        <!-- Loading -->
+        @if (loading) {
+            <div class="center">
+                <p-progressSpinner></p-progressSpinner>
+            </div>
         }
 
-        @if (currentVehicle.lastLogbookFuelEntry) {
-          <app-logbookfuelentry
-            [data]="currentVehicle.lastLogbookFuelEntry">
-          </app-logbookfuelentry>
+        <!-- Error -->
+        @if (!loading && error) {
+            <p-message severity="error" text="{{ error }}"></p-message>
         }
 
-      </div>
-    }
+        <!-- Data -->
+        @if (!loading && !error && currentVehicle) {
 
-  </p-card>
+            <div class="p-grid p-m-3 p-justify-center">
+
+                <p>Current Vehicle: {{ currentVehicleText }}</p>
+                <app-vehicle-details
+                        [data]="currentVehicle">
+                </app-vehicle-details>
+
+                @if (currentVehicle.lastLogbookEntry) {
+                    <app-logbookentry
+                            [data]="currentVehicle.lastLogbookEntry">
+                    </app-logbookentry>
+                }
+
+                @if (currentVehicle.lastLogbookFuelEntry) {
+                    <app-logbookfuelentry
+                            [data]="currentVehicle.lastLogbookFuelEntry">
+                    </app-logbookfuelentry>
+                }
+
+            </div>
+        }
+
+        @if (noVehiclesYet) {
+            <div class="p-grid p-m-3 p-justify-center">
+
+                <p>You don't have any vehicles in your profile yet. Create your first vehicle <a href="/vehicle/create">here</a>
+                </p>
+
+            </div>
+        }
+
+    </p-card>
 </div>

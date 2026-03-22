@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
   username: string = '';
   currentVehicleText: string = '';
   currentVehicle: Vehicle | null = null;
+  noVehiclesYet: boolean = false;
   loading = true;
   error = '';
 
@@ -73,15 +74,22 @@ export class DashboardComponent implements OnInit {
       next: (res) => {
         this.loading = false;
         this.currentVehicle = res;
-        this.currentVehicleText = `${res.make} ${res.model}`;
+        this.currentVehicleText = !!res ? `${res.make} ${res.model}` : '';
         console.log(this.currentVehicle);
         console.log(this.currentVehicleText);
 
-        if (res.id != null) {
+        if (!!res && res.id != null) {
           localStorage.setItem('currentVehicleId', res.id);
         }
 
         this.cdr.detectChanges();
+
+      },
+      complete: () => {
+        if (!this.currentVehicle) {
+          this.noVehiclesYet = true;
+          this.cdr.detectChanges();
+        }
       },
       error: () => {
         this.loading = false;

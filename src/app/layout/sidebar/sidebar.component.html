@@ -19,6 +19,7 @@
                 <!-- Clickable parent -->
                 <div
                         class="menu-item"
+                        [class.disabled]="disablePages ? true: null"
                         (click)="item['children'] ? toggleGroup(item) : sidebarService.closeMobile()"
                         [routerLink]="item.routerLink || null"
                         routerLinkActive="active">
@@ -52,6 +53,7 @@
                                 <a
                                         class="menu-item sub"
                                         [routerLink]="child.routerLink"
+                                        [class.disabled]="disablePages ? true: null"
                                         routerLinkActive="active"
                                         (click)="sidebarService.closeMobile()">
 

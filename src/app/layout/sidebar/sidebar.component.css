@@ -98,3 +98,9 @@
 .sidebar.collapsed .menu-item {
   justify-content: center;
 }
+
+a.disabled, div.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: #c3cfe2;
+}

@@ -18,6 +18,7 @@ export const APP_CONSTANTS = {
         }
     },
     MISC: {
-        DATEFORMAT: 'dd.MM.yyyy HH:mm Z'
+        DATEFORMAT: 'dd.MM.yyyy HH:mm Z',
+        CURRENT_VEHICLE_ID: 'currentVehicleId'
     }
 }
