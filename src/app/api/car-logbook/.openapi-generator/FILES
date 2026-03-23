@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 api.base.service.ts
 api.module.ts
@@ -22,6 +21,7 @@ model/logbookFuelEntryAverageConsumption.ts
 model/logbookFuelEntryPrice.ts
 model/models.ts
 model/pingResponse.ts
+model/uploadResponse.ts
 model/vehicle.ts
 model/vehiclePower.ts
 param.ts

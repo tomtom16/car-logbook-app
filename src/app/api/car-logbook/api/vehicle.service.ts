@@ -19,6 +19,8 @@ import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 // @ts-ignore
 import { ErrorResponse } from '../model/errorResponse';
 // @ts-ignore
+import { UploadResponse } from '../model/uploadResponse';
+// @ts-ignore
 import { Vehicle } from '../model/vehicle';
 
 // @ts-ignore
@@ -162,6 +164,59 @@ export class VehicleService extends BaseService {
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
+                ...(withCredentials ? { withCredentials } : {}),
+                headers: localVarHeaders,
+                observe: observe,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Download a photo from the Azure Blob Storage
+     * Downloads a file from the Azure Blob Storage
+     * @endpoint get /api/v1/vehicle/{vehicleId}/photo
+     * @param vehicleId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     * @param options additional options
+     */
+    public downloadPhoto(vehicleId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/octet-stream' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<Blob>;
+    public downloadPhoto(vehicleId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/octet-stream' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Blob>>;
+    public downloadPhoto(vehicleId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/octet-stream' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Blob>>;
+    public downloadPhoto(vehicleId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/octet-stream' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (vehicleId === null || vehicleId === undefined) {
+            throw new Error('Required parameter vehicleId was null or undefined when calling downloadPhoto.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        // authentication (ApiKeyAuth) required
+        localVarHeaders = this.configuration.addCredentialToHeaders('ApiKeyAuth', 'X-Api-Key', localVarHeaders);
+
+        // authentication (UserServiceToken) required
+        localVarHeaders = this.configuration.addCredentialToHeaders('UserServiceToken', 'Authorization', localVarHeaders, 'Bearer ');
+
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/octet-stream',
+            'application/problem+json'
+        ]);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
+
+
+        let localVarPath = `/api/v1/vehicle/${this.configuration.encodeParam({name: "vehicleId", value: vehicleId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/photo`;
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request('get', `${basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                responseType: "blob",
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
@@ -417,6 +472,97 @@ export class VehicleService extends BaseService {
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters.toHttpParams(),
+                responseType: <any>responseType_,
+                ...(withCredentials ? { withCredentials } : {}),
+                headers: localVarHeaders,
+                observe: observe,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Upload a file to Azure Blob Storage
+     * Uploads a file and optionally places it in a virtual folder inside a blob container.
+     * @endpoint post /api/v1/vehicle/{vehicleId}/photo
+     * @param vehicleId 
+     * @param file The file to upload
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     * @param options additional options
+     */
+    public uploadPhoto(vehicleId: string, file: Blob, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<UploadResponse>;
+    public uploadPhoto(vehicleId: string, file: Blob, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<UploadResponse>>;
+    public uploadPhoto(vehicleId: string, file: Blob, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<UploadResponse>>;
+    public uploadPhoto(vehicleId: string, file: Blob, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (vehicleId === null || vehicleId === undefined) {
+            throw new Error('Required parameter vehicleId was null or undefined when calling uploadPhoto.');
+        }
+        if (file === null || file === undefined) {
+            throw new Error('Required parameter file was null or undefined when calling uploadPhoto.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        // authentication (ApiKeyAuth) required
+        localVarHeaders = this.configuration.addCredentialToHeaders('ApiKeyAuth', 'X-Api-Key', localVarHeaders);
+
+        // authentication (UserServiceToken) required
+        localVarHeaders = this.configuration.addCredentialToHeaders('UserServiceToken', 'Authorization', localVarHeaders, 'Bearer ');
+
+        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json',
+            'application/problem+json'
+        ]);
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'multipart/form-data'
+        ];
+
+        const canConsumeForm = this.canConsumeForm(consumes);
+
+        let localVarFormParams: { append(param: string, value: any): any; };
+        let localVarUseForm = false;
+        let localVarConvertFormParamsToString = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        // see https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data
+        localVarUseForm = canConsumeForm;
+        if (localVarUseForm) {
+            localVarFormParams = new FormData();
+        } else {
+            localVarFormParams = new HttpParams({encoder: this.encoder});
+        }
+
+        if (file !== undefined) {
+            localVarFormParams = localVarFormParams.append('file', <any>file) as any || localVarFormParams;
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/api/v1/vehicle/${this.configuration.encodeParam({name: "vehicleId", value: vehicleId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/photo`;
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<UploadResponse>('post', `${basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: localVarConvertFormParamsToString ? localVarFormParams.toString() : localVarFormParams,
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,

@@ -36,7 +36,7 @@ import {ConsumptionChartComponent} from "../../components/consumption-chart/cons
 })
 export class DashboardComponent implements OnInit {
 
-  consumptionChartEntries: LogbookFuelEntry[] = [];
+  fuelEntries: LogbookFuelEntry[] = [];
 
   username: string = '';
   currentVehicleText: string = '';
@@ -108,16 +108,16 @@ export class DashboardComponent implements OnInit {
       },
     });
 
-    this.loadAverageConsumptionChartEntries();
+    this.loadFuelEntries();
   }
 
-  loadAverageConsumptionChartEntries() {
+  loadFuelEntries() {
     let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID);
 
     if (currentVehicleId != null) {
       this.apiService.getLogbookFuelEntries(currentVehicleId).subscribe({
         next: (res) => {
-          this.consumptionChartEntries = res;
+          this.fuelEntries = res;
           this.cdr.detectChanges();
         },
         complete: () => {

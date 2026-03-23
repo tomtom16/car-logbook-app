@@ -6,5 +6,6 @@ export * from './logbookFuelEntry';
 export * from './logbookFuelEntryAverageConsumption';
 export * from './logbookFuelEntryPrice';
 export * from './pingResponse';
+export * from './uploadResponse';
 export * from './vehicle';
 export * from './vehiclePower';
