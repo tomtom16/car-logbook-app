@@ -1,0 +1,62 @@
+.dashboard {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* STAT CARDS */
+.stat-card {
+    border-radius: 12px;
+}
+
+.stat-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.stat-title {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* ACTIVITY LIST */
+.activity-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.activity-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.activity-list small {
+    color: #888;
+}
+
+/* UTIL */
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.muted {
+    color: #666;
+}
+
+.chart-container {
+    height: 300px;
+}

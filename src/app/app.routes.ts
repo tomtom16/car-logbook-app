@@ -12,6 +12,7 @@ import {CreateLogbookEntryComponent} from "./pages/logbook/entry/create-entry/cr
 import {ListLogbookEntriesComponent} from "./pages/logbook/entry/list-entries/list-logbook-entries.component";
 import {ListLogbookFuelEntriesComponent} from "./pages/logbook/fuel/list-entries/list-logbook-fuel-entries.component";
 import {ListVehiclesComponent} from "./pages/vehicle/list-vehicles/list-vehicles.component";
+import {RandomDashboardComponent} from "./pages/random-dashboard/random-dashboard.component";
 
 export const routes: Routes = [
     // ✅ AUTH PAGES (NO NAVBAR)
@@ -31,6 +32,11 @@ export const routes: Routes = [
             {
                 path: 'dashboard',
                 component: DashboardComponent,
+                canActivate: [authGuard], // ✅ protect route
+            },
+            {
+                path: 'random-dashboard',
+                component: RandomDashboardComponent,
                 canActivate: [authGuard], // ✅ protect route
             },
             {

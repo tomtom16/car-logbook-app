@@ -98,6 +98,11 @@ export class SidebarComponent implements OnInit {
                 }
             ]
         },
+        {
+            label: 'Random Dashboard',
+            icon: 'pi pi-arrow-right',
+            routerLink: 'random-dashboard'
+        }
     ];
 
     toggleGroup(clickedItem: MenuItem) {
