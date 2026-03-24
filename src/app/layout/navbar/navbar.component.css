@@ -29,6 +29,17 @@
   width: 270px;
 }
 
+/* Mobile */
+@media (max-width: 768px) {
+  .collapse-vehicle-picker-wrapper.collapsed .collapse-button-wrapper {
+    width: auto;
+  }
+
+  .collapse-button-wrapper {
+    width: auto;
+  }
+}
+
 .vehicle-picker-wrapper {
 
 }
