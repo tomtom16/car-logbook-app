@@ -89,6 +89,18 @@ export class ApiService {
         return this.vehicleService.getVehicle(id);
     }
 
+    setVehiclePhoto(id: string, photo: Blob) {
+        return this.vehicleService.uploadPhoto(id, photo);
+    }
+
+    getVehiclePhoto(id: string): Observable<Blob> {
+        return this.vehicleService.downloadPhoto(id);
+    }
+
+    deleteVehiclePhoto(id: string) {
+        return this.vehicleService.deleteVehiclePhoto(id);
+    }
+
     getLogbookEntries(vehicleId: string): Observable<LogbookEntry[]> {
         return this.logbookService.getLogbookEntries(vehicleId);
     }

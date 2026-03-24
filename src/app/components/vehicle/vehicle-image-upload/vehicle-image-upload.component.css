@@ -1,0 +1,42 @@
+.vehicle-image-upload-card {
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+.vehicle-image-upload-card p {
+    margin: 6px 0;
+}
+
+.vehicle-image-upload-card strong {
+    color: #333;
+}
+
+.vehicle-image-upload-card .image {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+}
+
+.preview img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}

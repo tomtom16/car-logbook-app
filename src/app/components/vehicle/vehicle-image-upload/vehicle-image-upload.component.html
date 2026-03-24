@@ -1,0 +1,70 @@
+<div class="p-col-12 p-md-4">
+    <p-card header="Vehicle Photo Upload" class="vehicle-image-upload-card">
+        <div class="p-grid p-align-start">
+            <div class="p-col-12 p-md-6">
+                @if (!selectedFile) {
+                    <p>No photo for vehicle found. Upload one now:</p>
+                }
+
+                <div class="upload-container">
+
+                    <!-- Hidden Input -->
+                    <input
+                        #fileInput
+                        type="file"
+                        accept="image/*"
+                        (change)="onFileSelect($event)"
+                        hidden
+                    />
+
+                    <!-- Initial Upload Button -->
+                    @if (!imageUrl) {
+                        <button
+                                pButton
+                                icon="pi pi-upload"
+                                label="Select Image"
+                                severity="secondary"
+                                (click)="fileInput.click()">
+                        </button>
+                    }
+
+                    <!-- Preview Mode -->
+                    @if (imageUrl) {
+                        <div class="preview">
+                            <img [src]="imageUrl" />
+
+                            <div class="actions">
+
+                                <button
+                                        pButton
+                                        label="Confirm"
+                                        icon="pi pi-check"
+                                        severity="success"
+                                        (click)="confirmUpload()">
+                                </button>
+
+                                <button
+                                        pButton
+                                        label="Change"
+                                        icon="pi pi-refresh"
+                                        severity="secondary"
+                                        (click)="fileInput.click()">
+                                </button>
+
+                                <button
+                                        pButton
+                                        label="Cancel"
+                                        icon="pi pi-times"
+                                        severity="secondary"
+                                        (click)="cancel()">
+                                </button>
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </p-card>
+</div>

@@ -24,6 +24,12 @@
                         [data]="currentVehicle">
                 </app-vehicle-details>
 
+                @if (!!vehicleImage) {
+                    <app-vehicle-image [blob]="vehicleImage" (cleared)="onDeletePhoto($event)"></app-vehicle-image>
+                } @else {
+                    <app-vehicle-image-upload (confirmed)="onUploadConfirmed($event)"></app-vehicle-image-upload>
+                }
+
                 @if (currentVehicle.lastLogbookEntry) {
                     <app-logbookentry
                             [data]="currentVehicle.lastLogbookEntry">

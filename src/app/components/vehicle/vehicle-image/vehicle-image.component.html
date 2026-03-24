@@ -1,0 +1,22 @@
+@if (imageUrl) {
+    <div class="p-col-12 p-md-4">
+        <p-card header="Vehicle Photo" class="vehicle-image-card">
+            <div class="p-grid p-align-start">
+                <div class="p-col-12 p-md-6">
+                    <img [src]="imageUrl" class="image"/>
+                </div>
+                <div class="p-col-12 p-md-6">
+                    <button
+                            pButton
+                            label="Clear"
+                            icon="pi pi-times"
+                            severity="secondary"
+                            (click)="clearPhoto()">
+                    </button>
+                </div>
+            </div>
+        </p-card>
+    </div>
+} @else {
+    <span>No image available</span>
+}
