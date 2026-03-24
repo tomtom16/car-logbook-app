@@ -1,0 +1,13 @@
+.chart-card {
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+.chart-card p {
+    margin: 6px 0;
+}
+
+.chart-card strong {
+    color: #333;
+}

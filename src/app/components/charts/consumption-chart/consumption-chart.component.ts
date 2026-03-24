@@ -1,9 +1,9 @@
 import {Component, Input, OnChanges} from "@angular/core";
 import {UIChart} from "primeng/chart";
 import {DatePipe} from "@angular/common";
-import {APP_CONSTANTS} from "../../app.constants";
 import {Card} from "primeng/card";
-import {LogbookFuelEntry} from "../../api/car-logbook";
+import {LogbookFuelEntry} from "../../../api/car-logbook";
+import {APP_CONSTANTS} from "../../../app.constants";
 
 @Component({
     selector: "app-consumption-chart",

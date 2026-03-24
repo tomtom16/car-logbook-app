@@ -15,11 +15,12 @@ import {LogbookfuelentryComponent} from '../../components/logbook/logbookfuelent
 import {Observable, Subscription} from 'rxjs';
 import {UpdateService} from '../../services/update.service';
 import {APP_CONSTANTS} from "../../app.constants";
-import {ConsumptionChartComponent} from "../../components/consumption-chart/consumption-chart.component";
 import {VehicleImageComponent} from "../../components/vehicle/vehicle-image/vehicle-image.component";
 import {
     VehicleImageUploadComponent
 } from "../../components/vehicle/vehicle-image-upload/vehicle-image-upload.component";
+import {ConsumptionChartComponent} from "../../components/charts/consumption-chart/consumption-chart.component";
+import {PriceChartComponent} from "../../components/charts/price-chart/price-chart.component";
 
 @Component({
     selector: 'app-dashboard',
@@ -34,6 +35,7 @@ import {
         LogbookentryComponent,
         LogbookfuelentryComponent,
         ConsumptionChartComponent,
+        PriceChartComponent,
         VehicleImageComponent,
         VehicleImageUploadComponent
     ],
