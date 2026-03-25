@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from "@angular/core";
+import {Component, EventEmitter, NgZone, Output} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {ButtonModule} from "primeng/button";
 import {Card} from "primeng/card";
@@ -15,6 +15,9 @@ export class VehicleImageUploadComponent {
 
     @Output() confirmed = new EventEmitter<File>();
 
+    constructor(private ngZone: NgZone) {
+    }
+
     onFileSelect(event: any) {
         const file = event.target.files?.[0];
         if (!file) return;
@@ -26,6 +29,7 @@ export class VehicleImageUploadComponent {
 
         // Reset input so same file can be selected again
         event.target.value = null;
+        event.target.blur();
 
         this.selectedFile = file;
 
