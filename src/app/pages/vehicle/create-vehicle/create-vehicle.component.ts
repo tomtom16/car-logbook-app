@@ -32,7 +32,6 @@ export class CreateVehicleComponent {
     licensePlate: string = '';
     powerKw: number | null = null;
     gasoline: any;
-    photo: string = '';
     primary: boolean = false;
 
     error = '';
@@ -74,7 +73,6 @@ export class CreateVehicleComponent {
             licensePlate: this.licensePlate,
             power: power,
             gasoline: this.parseGasoline(this.gasoline.value),
-            photo: this.photo,
             primary: this.primary
         };
 
