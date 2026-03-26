@@ -4,11 +4,29 @@
         <div class="p-grid p-align-start">
 
             <div class="p-col-12 p-md-6">
-                <p-chart
-                        type="line"
-                        [data]="chartData"
-                        [options]="chartOptions">
-                </p-chart>
+                <div class="field">
+                    <label for="gasoline">Show last</label>
+
+                    <span class="p-input-icon-left w-full">
+                        <p-select
+                                [options]="entriesOptions"
+                                [(ngModel)]="selectedEntriesOption"
+                                optionLabel="label"
+                                placeholder="x entries"
+                                class="w-full"
+                                (ngModelChange)="onChange($event)">
+                        </p-select>
+                    </span>
+                </div>
+                <div>
+                    <p-chart
+                            type="line"
+                            [data]="chartData"
+                            [options]="chartOptions"
+                            height="250px;"
+                    >
+                    </p-chart>
+                </div>
             </div>
         </div>
     </p-card>

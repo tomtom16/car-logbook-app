@@ -4,12 +4,16 @@ import {DatePipe} from "@angular/common";
 import {Card} from "primeng/card";
 import {LogbookFuelEntry} from "../../../api/car-logbook";
 import {APP_CONSTANTS} from "../../../app.constants";
+import {Select} from "primeng/select";
+import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: "app-price-chart",
     imports: [
         UIChart,
-        Card
+        Card,
+        Select,
+        FormsModule
     ],
     providers: [DatePipe],
     templateUrl: "./price-chart.component.html",
@@ -22,22 +26,40 @@ export class PriceChartComponent implements OnChanges {
     chartData: any;
     chartOptions: any;
 
+    entriesOptions: any;
+    selectedEntriesOption: any;
+
     constructor(private datePipe: DatePipe) {
     }
 
     ngOnChanges() {
         if (!this.entries || this.entries.length === 0) return;
 
+        this.entriesOptions = [
+            {label: '5 entries', value: 5},
+            {label: '10 entries', value: 10},
+            {label: '20 entries', value: 20},
+            {label: '50 entries', value: 50},
+            {label: 'all entries', value: 0},
+        ];
+
+        this.selectedEntriesOption = this.entriesOptions[1];
+
+        this.setChartData();
+    }
+
+    setChartData() {
         let unit = this.entries[0].unit;
 
-        // IMPORTANT: reverse to chronological order
         const sorted = [...this.entries].filter(e => !!e.price && !!e.price.perUnit ).reverse();
 
-        const labels = sorted.map(e =>
+        const filtered = this.selectedEntriesOption.value > 0 ? sorted.slice(sorted.length - this.selectedEntriesOption.value, sorted.length) : sorted;
+
+        const labels = filtered.map(e =>
             this.datePipe.transform(e.date, APP_CONSTANTS.MISC.DATEFORMAT_SIMPLE)
         );
 
-        const data = sorted.map(e =>
+        const data = filtered.map(e =>
             e.price?.perUnit ?? 0
         );
 
@@ -91,5 +113,9 @@ export class PriceChartComponent implements OnChanges {
                 }
             }
         };
+    }
+
+    onChange(event: any) {
+        this.setChartData();
     }
 }
