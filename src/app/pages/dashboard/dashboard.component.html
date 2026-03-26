@@ -1,63 +1,67 @@
 <div class="dashboard">
-    <p-card header="Dashboard">
+    <p-card class="dashboard-card">
         <h2>Welcome {{ username }}</h2>
-
-        <!-- Loading -->
-        @if (loading) {
-            <div class="center">
-                <p-progressSpinner></p-progressSpinner>
-            </div>
-        }
-
-        <!-- Error -->
-        @if (!loading && error) {
-            <p-message severity="error" text="{{ error }}"></p-message>
-        }
-
-        <!-- Data -->
-        @if (!loading && !error && currentVehicle) {
-
-            <div class="p-grid p-m-3 p-justify-center">
-
-                <p>Current Vehicle: {{ currentVehicleText }}</p>
-                <app-vehicle-details
-                        [data]="currentVehicle">
-                </app-vehicle-details>
-
-                @if (!!vehicleImage) {
-                    <app-vehicle-image [blob]="vehicleImage" (cleared)="onDeletePhoto($event)"></app-vehicle-image>
-                } @else {
-                    <app-vehicle-image-upload (confirmed)="onUploadConfirmed($event)"></app-vehicle-image-upload>
-                }
-
-                @if (currentVehicle.lastLogbookEntry) {
-                    <app-logbookentry
-                            [data]="currentVehicle.lastLogbookEntry">
-                    </app-logbookentry>
-                }
-
-                @if (currentVehicle.lastLogbookFuelEntry) {
-                    <app-logbookfuelentry
-                            [data]="currentVehicle.lastLogbookFuelEntry">
-                    </app-logbookfuelentry>
-                }
-
-                @if (fuelEntries !== undefined && fuelEntries.length > 0) {
-                    <app-consumption-chart [entries]="fuelEntries"></app-consumption-chart>
-                    <app-price-chart [entries]="fuelEntries"></app-price-chart>
-                }
-
-            </div>
-        }
-
-        @if (noVehiclesYet) {
-            <div class="p-grid p-m-3 p-justify-center">
-
-                <p>You don't have any vehicles in your profile yet. Create your first vehicle <a href="/vehicle/create">here</a>
-                </p>
-
-            </div>
-        }
-
     </p-card>
+    <!-- Loading -->
+    @if (loading) {
+        <div class="center">
+            <p-progressSpinner></p-progressSpinner>
+        </div>
+    }
+
+    <!-- Error -->
+    @if (!loading && error) {
+        <p-message severity="error" text="{{ error }}"></p-message>
+    }
+
+    <!-- Data -->
+    @if (!loading && !error && currentVehicle) {
+
+            <p-card class="dashboard-card">
+                <p>Current Vehicle: {{ currentVehicleText }}</p>
+            </p-card>
+
+        <div class="p-grid p-m-3 p-justify-center">
+
+
+            <app-vehicle-details
+                    [data]="currentVehicle">
+            </app-vehicle-details>
+
+            @if (!!vehicleImage) {
+                <app-vehicle-image [blob]="vehicleImage" (cleared)="onDeletePhoto($event)"></app-vehicle-image>
+            } @else {
+                <app-vehicle-image-upload (confirmed)="onUploadConfirmed($event)"></app-vehicle-image-upload>
+            }
+
+            @if (currentVehicle.lastLogbookEntry) {
+                <app-logbookentry
+                        [data]="currentVehicle.lastLogbookEntry">
+                </app-logbookentry>
+            }
+
+            @if (currentVehicle.lastLogbookFuelEntry) {
+                <app-logbookfuelentry
+                        [data]="currentVehicle.lastLogbookFuelEntry">
+                </app-logbookfuelentry>
+            }
+
+            @if (fuelEntries !== undefined && fuelEntries.length > 0) {
+                <app-consumption-chart [entries]="fuelEntries"></app-consumption-chart>
+                <app-price-chart [entries]="fuelEntries"></app-price-chart>
+            }
+
+        </div>
+    }
+
+    @if (noVehiclesYet) {
+        <div class="p-grid p-m-3 p-justify-center">
+
+            <p>You don't have any vehicles in your profile yet. Create your first vehicle <a
+                    href="/vehicle/create">here</a>
+            </p>
+
+        </div>
+    }
+
 </div>

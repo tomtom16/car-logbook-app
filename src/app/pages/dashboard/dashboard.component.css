@@ -1,0 +1,14 @@
+.dashboard-card {
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    height: auto;
+}
+
+.dashboard-card p {
+    margin: 6px 0;
+}
+
+.dashboard-card strong {
+    color: #333;
+}
