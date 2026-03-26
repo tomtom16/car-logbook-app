@@ -6,7 +6,7 @@ import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {DatePickerModule} from "primeng/datepicker";
 import {ApiService} from "../../../../services/api.service";
-import {LogbookFuelEntry} from "../../../../api/car-logbook";
+import {LogbookFuelEntry, SortDirection} from "../../../../api/car-logbook";
 import {TableModule} from "primeng/table";
 import {DatePipe, DecimalPipe} from "@angular/common";
 import {APP_CONSTANTS} from "../../../../app.constants";
@@ -25,6 +25,10 @@ export class ListLogbookFuelEntriesComponent implements OnInit {
     entries!: LogbookFuelEntry[];
 
     error = '';
+
+    first: number = 0;
+    rows: number = 10;
+    total: number = 0;
 
     private newLogbookFuelEntrySub!: Subscription;
     private currentVehicleIdChangedSub!: Subscription;
@@ -49,15 +53,30 @@ export class ListLogbookFuelEntriesComponent implements OnInit {
     }
 
     loadData() {
+        this.pageChange({first: 0, rows: this.rows});
+    }
+
+    pageChange(event: any) {
+        console.log(event);
+        this.first = event.first;
+        this.rows = event.rows;
+
         let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID) as string;
-        this.apiService.getLogbookFuelEntries(currentVehicleId).subscribe({
+        const page = event.first / event.rows; // 0-based page index
+        const limit = event.rows;
+
+        this.apiService.getLogbookFuelEntriesPaginated(currentVehicleId, page, limit, 'mileage', SortDirection.Desc, undefined).subscribe({
             next: (res) => {
-                console.log(res);
-                this.entries = res;
+                if (!!res && !!res.entries) {
+                    this.entries = res.entries;
+                }
+                if (!!res && !!res.results) {
+                    this.total = res.results;
+                }
                 this.cdr.detectChanges();
             },
             error: () => {
-                this.error = 'Error loading logbook entries';
+                console.log('error loading fuel entries paginated');
             }
         });
     }

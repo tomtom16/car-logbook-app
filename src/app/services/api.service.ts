@@ -12,10 +12,10 @@ import {
     RegisterService,
 } from '../api/auth';
 import {
-    LogbookEntry,
-    LogbookFuelEntry,
+    LogbookEntry, LogbookEntryResultList,
+    LogbookFuelEntry, LogbookFuelEntryResultList,
     LogbookFuelService,
-    LogbookService,
+    LogbookService, SortDirection,
     Vehicle,
     VehicleService
 } from '../api/car-logbook';
@@ -101,12 +101,20 @@ export class ApiService {
         return this.vehicleService.deleteVehiclePhoto(id);
     }
 
-    getLogbookEntries(vehicleId: string): Observable<LogbookEntry[]> {
+    getLogbookEntries(vehicleId: string): Observable<LogbookEntryResultList> {
         return this.logbookService.getLogbookEntries(vehicleId);
     }
 
-    getLogbookFuelEntries(vehicleId: string): Observable<LogbookFuelEntry[]> {
+    getLogbookEntriesPaginated(vehicleId: string, page: number, limit: number, sort: string, dir: SortDirection, filter?: string): Observable<LogbookEntryResultList> {
+        return this.logbookService.getLogbookEntries(vehicleId, page, limit, sort, dir, filter);
+    }
+
+    getLogbookFuelEntries(vehicleId: string): Observable<LogbookFuelEntryResultList> {
         return this.logbookFuelService.getFuelEntries(vehicleId);
+    }
+
+    getLogbookFuelEntriesPaginated(vehicleId: string, page: number, limit: number, sort: string, dir: SortDirection, filter?: string): Observable<LogbookFuelEntryResultList> {
+        return this.logbookFuelService.getFuelEntries(vehicleId, page, limit, sort, dir, filter);
     }
 
     createVehicle(vehicle: Vehicle): Observable<Vehicle> {

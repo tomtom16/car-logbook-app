@@ -20,6 +20,10 @@ import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 import { ErrorResponse } from '../model/errorResponse';
 // @ts-ignore
 import { LogbookFuelEntry } from '../model/logbookFuelEntry';
+// @ts-ignore
+import { LogbookFuelEntryResultList } from '../model/logbookFuelEntryResultList';
+// @ts-ignore
+import { SortDirection } from '../model/sortDirection';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -183,17 +187,69 @@ export class LogbookFuelService extends BaseService {
      * Protected logbook fuel endpoint
      * @endpoint get /api/v1/vehicle/{vehicleId}/logbook/fuel
      * @param vehicleId 
+     * @param page 
+     * @param limit 
+     * @param sort 
+     * @param dir 
+     * @param filter 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public getFuelEntries(vehicleId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<Array<LogbookFuelEntry>>;
-    public getFuelEntries(vehicleId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<LogbookFuelEntry>>>;
-    public getFuelEntries(vehicleId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<LogbookFuelEntry>>>;
-    public getFuelEntries(vehicleId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getFuelEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<LogbookFuelEntryResultList>;
+    public getFuelEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<LogbookFuelEntryResultList>>;
+    public getFuelEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<LogbookFuelEntryResultList>>;
+    public getFuelEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (vehicleId === null || vehicleId === undefined) {
             throw new Error('Required parameter vehicleId was null or undefined when calling getFuelEntries.');
         }
+
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'page',
+            <any>page,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'limit',
+            <any>limit,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'sort',
+            <any>sort,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'dir',
+            <any>dir,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'filter',
+            <any>filter,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -229,9 +285,10 @@ export class LogbookFuelService extends BaseService {
 
         let localVarPath = `/api/v1/vehicle/${this.configuration.encodeParam({name: "vehicleId", value: vehicleId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}/logbook/fuel`;
         const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<Array<LogbookFuelEntry>>('get', `${basePath}${localVarPath}`,
+        return this.httpClient.request<LogbookFuelEntryResultList>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,

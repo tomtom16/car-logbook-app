@@ -16,11 +16,14 @@ model/errorResponse.ts
 model/gasoline.ts
 model/importType.ts
 model/logbookEntry.ts
+model/logbookEntryResultList.ts
 model/logbookFuelEntry.ts
 model/logbookFuelEntryAverageConsumption.ts
 model/logbookFuelEntryPrice.ts
+model/logbookFuelEntryResultList.ts
 model/models.ts
 model/pingResponse.ts
+model/sortDirection.ts
 model/uploadResponse.ts
 model/vehicle.ts
 model/vehiclePower.ts

@@ -127,7 +127,9 @@ export class DashboardComponent implements OnInit {
         if (currentVehicleId != null) {
             this.apiService.getLogbookFuelEntries(currentVehicleId).subscribe({
                 next: (res) => {
-                    this.fuelEntries = res;
+                    if (!!res && !!res.entries) {
+                        this.fuelEntries = res.entries;
+                    }
                     this.cdr.detectChanges();
                 },
                 complete: () => {
