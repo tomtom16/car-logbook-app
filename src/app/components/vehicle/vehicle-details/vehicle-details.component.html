@@ -1,26 +1,43 @@
 <div class="p-col-12 p-md-4">
-  <p-card header="Current Vehicle" class="vehicle-card">
+    <p-card class="vehicle-card">
 
-    <div class="p-grid p-align-start">
+        <div class="p-card-body">
 
-      <div class="p-col-12 p-md-6">
-        <p><i class="pi pi-car"></i><strong>Make:</strong> {{ data.make }}</p>
-        <p><strong>Model:</strong> {{ data.model }}</p>
-        <p><strong>Year of Construction:</strong> {{ data.yearOfConstruction }}</p>
-        <p><strong>License Plate:</strong> {{ data.licensePlate }}</p>
-        <p><strong>Gasoline:</strong><p-badge value="{{ data.gasoline }}" [severity]="badgeService.getSeverity(data.gasoline)"></p-badge></p>
-      </div>
+            <div class="p-grid p-align-start">
 
-      <div class="p-col-12 p-md-6">
-        <table>
-          <tr><td>HP:</td><td>{{ data.power?.hp }}</td></tr>
-          <tr><td>KW:</td><td>{{ data.power?.kw }}</td></tr>
-        </table>
-        <p><strong>Age:</strong> {{ data.currentAge }}</p>
-        <p><strong>Mileage:</strong> {{ data.currentMileage }}</p>
-      </div>
+                <div class="p-col-12 p-md-6">
 
-    </div>
+                    <div class="p-card-title">
+                        <span>Current Vehicle</span>&nbsp;<i class="pi pi-car"></i>
+                    </div>
+                    <p>&nbsp;</p>
+                    <p><strong>Make:</strong> {{ data.make }}</p>
+                    <p><strong>Model:</strong> {{ data.model }}</p>
+                    <p><strong>Year of Construction:</strong> {{ data.yearOfConstruction }}</p>
+                    <p><strong>License Plate:</strong> {{ data.licensePlate }}</p>
+                    <p><strong>Gasoline:</strong>
+                        <p-badge value="{{ data.gasoline }}"
+                                 [severity]="badgeService.getSeverity(data.gasoline)"></p-badge>
+                    </p>
+                </div>
 
-  </p-card>
+                <div class="p-col-12 p-md-6">
+                    <table>
+                        <tr>
+                            <td>HP:</td>
+                            <td>{{ data.power?.hp }}</td>
+                        </tr>
+                        <tr>
+                            <td>KW:</td>
+                            <td>{{ data.power?.kw }}</td>
+                        </tr>
+                    </table>
+                    <p><strong>Age:</strong> {{ data.currentAge }}</p>
+                    <p><strong>Mileage:</strong> {{ data.currentMileage }}</p>
+                </div>
+
+            </div>
+        </div>
+
+    </p-card>
 </div>

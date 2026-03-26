@@ -1,21 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Vehicle } from '../../../api/car-logbook';
-import { Card } from 'primeng/card';
-import { Badge } from 'primeng/badge';
+import {Component, Input, OnInit} from '@angular/core';
+import {Vehicle} from '../../../api/car-logbook';
+import {Card} from 'primeng/card';
+import {Badge} from 'primeng/badge';
 import {BadgeService} from "../../../services/badge.service";
 
 @Component({
-  selector: 'app-vehicle-details',
-  imports: [Card, Badge],
-  templateUrl: './vehicle-details.component.html',
-  styleUrl: './vehicle-details.component.css',
+    selector: 'app-vehicle-details',
+    imports: [Card, Badge],
+    templateUrl: './vehicle-details.component.html',
+    styleUrl: './vehicle-details.component.css',
 })
 export class VehicleDetailsComponent implements OnInit {
-  @Input() data: Vehicle = {};
+    @Input() data: Vehicle = {};
 
-  constructor(
-      public badgeService: BadgeService
-  ) {}
+    constructor(
+        public badgeService: BadgeService
+    ) {
+    }
 
-  ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 }
