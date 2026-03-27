@@ -3,24 +3,22 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 
-import {AuthService} from '../../services/auth.service';
-import {ApiService} from '../../services/api.service';
+import {AuthService} from '@app/services/auth.service';
+import {ApiService} from '@app/services/api.service';
 import {ProgressSpinner} from 'primeng/progressspinner';
 import {Message} from 'primeng/message';
 import {CommonModule} from '@angular/common';
-import {VehicleDetailsComponent} from '../../components/vehicle/vehicle-details/vehicle-details.component';
-import {LogbookFuelEntry, Vehicle} from '../../api/car-logbook';
-import {LogbookentryComponent} from '../../components/logbook/logbookentry/logbookentry.component';
-import {LogbookfuelentryComponent} from '../../components/logbook/logbookfuelentry/logbookfuelentry.component';
+import {VehicleDetailsComponent} from '@app/components/vehicle/vehicle-details/vehicle-details.component';
+import {LogbookFuelEntry, Vehicle} from '@app/api/car-logbook';
+import {LogbookentryComponent} from '@app/components/logbook/logbookentry/logbookentry.component';
+import {LogbookfuelentryComponent} from '@app/components/logbook/logbookfuelentry/logbookfuelentry.component';
 import {Observable, Subscription} from 'rxjs';
-import {UpdateService} from '../../services/update.service';
-import {APP_CONSTANTS} from "../../app.constants";
-import {VehicleImageComponent} from "../../components/vehicle/vehicle-image/vehicle-image.component";
-import {
-    VehicleImageUploadComponent
-} from "../../components/vehicle/vehicle-image-upload/vehicle-image-upload.component";
-import {ConsumptionChartComponent} from "../../components/charts/consumption-chart/consumption-chart.component";
-import {PriceChartComponent} from "../../components/charts/price-chart/price-chart.component";
+import {UpdateService} from '@app/services/update.service';
+import {APP_CONSTANTS} from "@app/app.constants";
+import {VehicleImageComponent} from "@app/components/vehicle/vehicle-image/vehicle-image.component";
+import {VehicleImageUploadComponent} from "@app/components/vehicle/vehicle-image-upload/vehicle-image-upload.component";
+import {ConsumptionChartComponent} from "@app/components/charts/consumption-chart/consumption-chart.component";
+import {PriceChartComponent} from "@app/components/charts/price-chart/price-chart.component";
 
 @Component({
     selector: 'app-dashboard',

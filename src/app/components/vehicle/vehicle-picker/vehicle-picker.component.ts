@@ -1,13 +1,13 @@
 import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ApiService} from '../../../services/api.service';
+import {ApiService} from '@app/services/api.service';
 import {ProgressSpinner} from 'primeng/progressspinner';
 import {Message} from 'primeng/message';
 import {FormsModule} from '@angular/forms';
 import {Select} from 'primeng/select';
-import {Vehicle} from '../../../api/car-logbook';
+import {Vehicle} from '@app/api/car-logbook';
 import {Subscription} from "rxjs";
-import {UpdateService} from "../../../services/update.service";
-import {APP_CONSTANTS} from "../../../app.constants";
+import {UpdateService} from "@app/services/update.service";
+import {APP_CONSTANTS} from "@app/app.constants";
 
 @Component({
     selector: 'app-vehicle-picker',

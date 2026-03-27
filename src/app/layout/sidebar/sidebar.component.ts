@@ -3,10 +3,10 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {Badge} from "primeng/badge";
-import {SidebarService} from "../../services/sidebar.service";
+import {SidebarService} from "@app/services/sidebar.service";
 import {MenuItem} from "primeng/api";
-import {APP_CONSTANTS} from "../../app.constants";
-import {UpdateService} from "../../services/update.service";
+import {APP_CONSTANTS} from "@app/app.constants";
+import {UpdateService} from "@app/services/update.service";
 import {Subscription} from "rxjs";
 
 @Component({

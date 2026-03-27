@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { LogbookFuelEntry } from '../../../api/car-logbook';
+import { LogbookFuelEntry } from '@app/api/car-logbook';
 import { Card } from 'primeng/card';
 import { DatePipe } from '@angular/common';
-import {APP_CONSTANTS} from "../../../app.constants";
+import {APP_CONSTANTS} from "@app/app.constants";
 
 @Component({
   selector: 'app-logbookfuelentry',

@@ -4,10 +4,10 @@ import {Router} from '@angular/router';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
 
-import {AuthService} from '../../services/auth.service';
-import {VehiclePickerComponent} from '../../components/vehicle/vehicle-picker/vehicle-picker.component';
-import {SidebarService} from "../../services/sidebar.service";
-import {APP_CONSTANTS} from "../../app.constants";
+import {AuthService} from '@app/services/auth.service';
+import {VehiclePickerComponent} from '@app/components/vehicle/vehicle-picker/vehicle-picker.component';
+import {SidebarService} from "@app/services/sidebar.service";
+import {APP_CONSTANTS} from "@app/app.constants";
 import {AsyncPipe} from "@angular/common";
 
 @Component({

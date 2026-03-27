@@ -1,18 +1,18 @@
 import {Routes} from '@angular/router';
-import {LoginComponent} from './pages/login/login.component';
-import {DashboardComponent} from './pages/dashboard/dashboard.component';
-import {authGuard} from './guards/auth-guard';
-import {guestGuard} from './guards/guest.guard';
-import {RegisterComponent} from './pages/register/register.component';
-import {MainLayoutComponent} from './layout/main-layout/main-layout.component';
-import {AuthLayoutComponent} from './layout/auth-layout/auth-layout.component';
-import {CreateVehicleComponent} from "./pages/vehicle/create-vehicle/create-vehicle.component";
-import {CreateLogbookFuelEntryComponent} from "./pages/logbook/fuel/create-entry/create-logbook-fuel-entry.component";
-import {CreateLogbookEntryComponent} from "./pages/logbook/entry/create-entry/create-logbook-entry.component";
-import {ListLogbookEntriesComponent} from "./pages/logbook/entry/list-entries/list-logbook-entries.component";
-import {ListLogbookFuelEntriesComponent} from "./pages/logbook/fuel/list-entries/list-logbook-fuel-entries.component";
-import {ListVehiclesComponent} from "./pages/vehicle/list-vehicles/list-vehicles.component";
-import {RandomDashboardComponent} from "./pages/random-dashboard/random-dashboard.component";
+import {LoginComponent} from '@app/pages/login/login.component';
+import {DashboardComponent} from '@app/pages/dashboard/dashboard.component';
+import {authGuard} from '@app/guards/auth-guard';
+import {guestGuard} from '@app/guards/guest.guard';
+import {RegisterComponent} from '@app/pages/register/register.component';
+import {MainLayoutComponent} from '@app/layout/main-layout/main-layout.component';
+import {AuthLayoutComponent} from '@app/layout/auth-layout/auth-layout.component';
+import {CreateVehicleComponent} from "@app/pages/vehicle/create-vehicle/create-vehicle.component";
+import {CreateLogbookFuelEntryComponent} from "@app/pages/logbook/fuel/create-entry/create-logbook-fuel-entry.component";
+import {CreateLogbookEntryComponent} from "@app/pages/logbook/entry/create-entry/create-logbook-entry.component";
+import {ListLogbookEntriesComponent} from "@app/pages/logbook/entry/list-entries/list-logbook-entries.component";
+import {ListLogbookFuelEntriesComponent} from "@app/pages/logbook/fuel/list-entries/list-logbook-fuel-entries.component";
+import {ListVehiclesComponent} from "@app/pages/vehicle/list-vehicles/list-vehicles.component";
+import {RandomDashboardComponent} from "@app/pages/random-dashboard/random-dashboard.component";
 
 export const routes: Routes = [
     // ✅ AUTH PAGES (NO NAVBAR)

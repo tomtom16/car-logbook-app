@@ -2,8 +2,8 @@ import {Component, Input, OnChanges} from "@angular/core";
 import {UIChart} from "primeng/chart";
 import {DatePipe} from "@angular/common";
 import {Card} from "primeng/card";
-import {LogbookFuelEntry} from "../../../api/car-logbook";
-import {APP_CONSTANTS} from "../../../app.constants";
+import {LogbookFuelEntry} from "@app/api/car-logbook";
+import {APP_CONSTANTS} from "@app/app.constants";
 import {Select} from "primeng/select";
 import {FormsModule} from "@angular/forms";
 

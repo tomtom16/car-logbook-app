@@ -1,9 +1,9 @@
 import {HttpErrorResponse, HttpInterceptorFn} from '@angular/common/http';
 import {inject} from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import {AuthService} from '@app/services/auth.service';
 import {Router} from '@angular/router';
 import {catchError, switchMap, throwError} from 'rxjs';
-import {APP_CONSTANTS} from "../app.constants";
+import {APP_CONSTANTS} from "@app/app.constants";
 
 let isRefreshing = false;
 
