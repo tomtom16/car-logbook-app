@@ -22,7 +22,8 @@
                         [class.disabled]="disablePages ? true: null"
                         (click)="item['children'] ? toggleGroup(item) : sidebarService.closeMobile()"
                         [routerLink]="item.routerLink || null"
-                        routerLinkActive="active">
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">
 
                     <i [class]="item.icon"></i>
 
@@ -55,6 +56,7 @@
                                         [routerLink]="child.routerLink"
                                         [class.disabled]="disablePages ? true: null"
                                         routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{ exact: true }"
                                         (click)="sidebarService.closeMobile()">
 
                                     <i [class]="child.icon"></i>

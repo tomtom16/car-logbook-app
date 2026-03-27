@@ -1,0 +1,36 @@
+.app-title {
+  margin: 0;
+}
+
+.username {
+  margin-right: 15px;
+  font-weight: 500;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid #ddd;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.footer a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--p-toolbar-color);
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+}
