@@ -59,3 +59,10 @@
 .pi {
   color: #6b7280; /* subtle gray */
 }
+
+.login-icon {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto;
+}

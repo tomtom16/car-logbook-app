@@ -1,69 +1,75 @@
 <div class="login-wrapper">
 
-  <p-card header="Welcome Back" subheader="Please login to continue" class="login-card">
+    <p-card header="Welcome Back" subheader="Please login to continue" class="login-card">
 
-    <div class="p-fluid">
+        <img
+                src="assets/images/logo_text.png"
+                alt="Login Icon"
+                class="login-icon"
+        />
 
-      <!-- Username -->
-      <div class="field">
-        <label for="username">Username</label>
+        <div class="p-fluid">
 
-        <span class="p-input-icon-left w-full">
+            <!-- Username -->
+            <div class="field">
+                <label for="username">Username</label>
+
+                <span class="p-input-icon-left w-full">
           <!--<i class="pi pi-user"></i>-->
           <input
-            id="username"
-            pInputText
-            [(ngModel)]="username"
-            placeholder="Enter username"
-            (keyup.enter)="onLogin()" />
+                  id="username"
+                  pInputText
+                  [(ngModel)]="username"
+                  placeholder="Enter username"
+                  (keyup.enter)="onLogin()"/>
         </span>
-      </div>
+            </div>
 
-      <!-- Password -->
-      <div class="field">
-        <label for="password">Password</label>
+            <!-- Password -->
+            <div class="field">
+                <label for="password">Password</label>
 
-        <span class="p-input-icon-left w-full">
+                <span class="p-input-icon-left w-full">
           <!--<i class="pi pi-lock"></i>-->
 
           <p-password
-            id="password"
-            [(ngModel)]="password"
-            [toggleMask]="true"
-            [feedback]="false"
-            placeholder="Enter password"
-            styleClass="w-full"
-            (keyup.enter)="onLogin()">
+                  id="password"
+                  [(ngModel)]="password"
+                  [toggleMask]="true"
+                  [feedback]="false"
+                  placeholder="Enter password"
+                  styleClass="w-full"
+                  (keyup.enter)="onLogin()">
           </p-password>
 
         </span>
-      </div>
+            </div>
 
-      <!-- Error -->
-      @if (error) {
-        <p-message severity="error" text="{{ error }}"></p-message>
-      }
+            <!-- Error -->
+            @if (error) {
+                <p-message severity="error" text="{{ error }}"></p-message>
+            }
 
-      <!-- Buttons -->
-      <div class="button-group">
-        <p-button
-          label="Login"
-          icon="pi pi-sign-in"
-          (onClick)="onLogin()"
-          [disabled]="!password || !username"
-          styleClass="w-full p-mb-2">
-        </p-button>
+            <!-- Buttons -->
+            <div class="button-group">
+                <p-button
+                        label="Login"
+                        icon="pi pi-sign-in"
+                        (onClick)="onLogin()"
+                        [disabled]="!password || !username"
+                        styleClass="w-full p-mb-2">
+                </p-button>
 
-        <p-button
-          label="Register"
-          icon="pi pi-user-plus"
-          link
-          (onClick)="onRegister()">
-        </p-button>
-      </div>
+                <p-button
+                        label="Register"
+                        icon="pi pi-user-plus"
+                        link
+                        (onClick)="onRegister()">
+                </p-button>
+            </div>
 
-    </div>
+        </div>
 
-  </p-card>
+    </p-card>
 
 </div>

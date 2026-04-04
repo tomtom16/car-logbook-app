@@ -10,6 +10,7 @@ import {AuthService} from '../../services/auth.service';
 import {Message} from 'primeng/message';
 import {Password} from 'primeng/password';
 import {APP_CONSTANTS} from "../../app.constants";
+import {Image} from "primeng/image";
 
 @Component({
     selector: 'app-login',

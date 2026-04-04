@@ -2,9 +2,9 @@
 
 set -e
 
-mvn clean package -DskipTests
+#mvn clean package -DskipTests
 
-cd user-service/target/ || exit 1
+#cd user-service/target/ || exit 1
 
 REGISTRY="wiensquareacr.azurecr.io"
 IMAGE_NAME="car-logbook-app"
