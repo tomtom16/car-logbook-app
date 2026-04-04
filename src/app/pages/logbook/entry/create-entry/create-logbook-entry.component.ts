@@ -1,4 +1,4 @@
-import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -24,8 +24,8 @@ import {APP_CONSTANTS} from "../../../../app.constants";
 })
 export class CreateLogbookEntryComponent implements OnInit {
     hourFormat: string = "24";
-    startDate: Date = new Date();
-    endDate: Date = new Date();
+    startDate: Date;
+    endDate: Date;
     kmStart: number | undefined;
     kmEnd: number | undefined;
     trip: number | undefined;
@@ -37,8 +37,13 @@ export class CreateLogbookEntryComponent implements OnInit {
         private router: Router,
         private apiService: ApiService,
         private refreshService: UpdateService,
+        private cdr: ChangeDetectorRef,
         @Inject(LOCALE_ID) private locale: string
-    ) {}
+    ) {
+        this.startDate = new Date();
+        this.startDate.setHours(this.startDate.getHours() - 1);
+        this.endDate = new Date();
+    }
 
     ngOnInit(): void {
         let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID) as string;
@@ -47,6 +52,7 @@ export class CreateLogbookEntryComponent implements OnInit {
                 console.log(res);
                 if (!!res.currentMileage) {
                     this.kmStart = res.currentMileage;
+                    this.cdr.detectChanges();
                 }
             },
             error: () => {

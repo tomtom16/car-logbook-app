@@ -9,7 +9,7 @@ import {ProgressSpinner} from 'primeng/progressspinner';
 import {Message} from 'primeng/message';
 import {CommonModule} from '@angular/common';
 import {VehicleDetailsComponent} from '@app/components/vehicle/vehicle-details/vehicle-details.component';
-import {LogbookFuelEntry, Vehicle} from '@app/api/car-logbook';
+import {LogbookEntry, LogbookFuelEntry, SortDirection, Vehicle} from '@app/api/car-logbook';
 import {LogbookentryComponent} from '@app/components/logbook/logbookentry/logbookentry.component';
 import {LogbookfuelentryComponent} from '@app/components/logbook/logbookfuelentry/logbookfuelentry.component';
 import {Observable, Subscription} from 'rxjs';
@@ -42,6 +42,10 @@ import {PriceChartComponent} from "@app/components/charts/price-chart/price-char
 })
 export class DashboardComponent implements OnInit {
 
+    currentMonthEntries: LogbookEntry[] = [];
+    currentMonthDistance: number = 0;
+    currentMonthLongestDistance: number = 0;
+    currentMonth: string;
     fuelEntries: LogbookFuelEntry[] = [];
     vehicleImage: Blob | undefined;
 
@@ -61,6 +65,8 @@ export class DashboardComponent implements OnInit {
         private cdr: ChangeDetectorRef,
         private refreshService: UpdateService,
     ) {
+        let now = new Date();
+        this.currentMonth = `${now.getMonth() + 1}/${now.getFullYear()}`
     }
 
     ngOnInit() {
@@ -101,6 +107,7 @@ export class DashboardComponent implements OnInit {
                 }
 
                 this.loadPhoto();
+                this.loadCurrentMonthEntries();
                 this.loadFuelEntries();
                 this.cdr.detectChanges();
 
@@ -117,6 +124,49 @@ export class DashboardComponent implements OnInit {
                 console.log(this.error);
             },
         });
+    }
+
+    loadCurrentMonthEntries() {
+        let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID);
+
+        if (currentVehicleId != null) {
+            this.apiService.getLogbookEntriesForCurrentMonth(currentVehicleId, 0, 100, 'endTime', SortDirection.Desc, undefined) .subscribe({
+                next: (res) => {
+                    if (!!res && !!res.entries) {
+                        this.currentMonthEntries = res.entries;
+                        this.calculateCurrentMonthDistance();
+                    }
+                    this.cdr.detectChanges();
+                },
+                complete: () => {
+                    this.cdr.detectChanges();
+                },
+                error: () => {
+                    console.log('error loading current month entries');
+                }
+            });
+        } else {
+            console.log('current vehicle id is null - not current month entries');
+        }
+    }
+
+    calculateCurrentMonthDistance() {
+        let distance: number = 0;
+        let max : number = 0;
+
+        this.currentMonthEntries.forEach( (entry) => {
+            if (!!entry.trip) {
+                distance += entry.trip;
+
+                if (entry.trip > max) {
+                    max = entry.trip;
+                }
+            }
+        })
+
+        this.currentMonthDistance = distance;
+        this.currentMonthLongestDistance = max;
+
     }
 
     loadFuelEntries() {
@@ -193,4 +243,6 @@ export class DashboardComponent implements OnInit {
             })
         }
     }
+
+    protected readonly CONSTANTS = APP_CONSTANTS;
 }

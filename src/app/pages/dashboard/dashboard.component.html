@@ -34,6 +34,30 @@
                 <app-vehicle-image-upload (confirmed)="onUploadConfirmed($event)"></app-vehicle-image-upload>
             }
 
+            @if (!!currentMonthEntries && currentMonthEntries.length > 0) {
+                <div class="p-col-12 p-md-4">
+
+                    <p-card header="Current Month Logbook Entries ({{ currentMonth }})" class="logbook-entry-card">
+
+                        <div class="p-grid p-align-start">
+
+                            <div class="p-col-12 p-md-6">
+                                <p><strong>Number of entries:</strong> {{ currentMonthEntries.length }}</p>
+                                <p><strong>Distance covered:</strong> {{ currentMonthDistance.toFixed(1) }} km</p>
+                                <p><strong>Longest single trip:</strong> {{ currentMonthLongestDistance.toFixed(1) }} km</p>
+                            </div>
+
+                            <div class="p-col-12 p-md-6">
+                                <p><a href="/logbook"><strong>Details</strong></a></p>
+                            </div>
+
+                        </div>
+
+                    </p-card>
+
+                </div>
+            }
+
             @if (currentVehicle.lastLogbookEntry) {
                 <app-logbookentry
                         [data]="currentVehicle.lastLogbookEntry">

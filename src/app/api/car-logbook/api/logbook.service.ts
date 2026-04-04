@@ -192,14 +192,16 @@ export class LogbookService extends BaseService {
      * @param sort 
      * @param dir 
      * @param filter 
+     * @param fromDate 
+     * @param toDate 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public getLogbookEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<LogbookEntryResultList>;
-    public getLogbookEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<LogbookEntryResultList>>;
-    public getLogbookEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<LogbookEntryResultList>>;
-    public getLogbookEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getLogbookEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, fromDate?: string, toDate?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<LogbookEntryResultList>;
+    public getLogbookEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, fromDate?: string, toDate?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<LogbookEntryResultList>>;
+    public getLogbookEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, fromDate?: string, toDate?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<LogbookEntryResultList>>;
+    public getLogbookEntries(vehicleId: string, page?: number, limit?: number, sort?: string, dir?: SortDirection, filter?: string, fromDate?: string, toDate?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/problem+json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (vehicleId === null || vehicleId === undefined) {
             throw new Error('Required parameter vehicleId was null or undefined when calling getLogbookEntries.');
         }
@@ -246,6 +248,24 @@ export class LogbookService extends BaseService {
             localVarQueryParameters,
             'filter',
             <any>filter,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'fromDate',
+            <any>fromDate,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'toDate',
+            <any>toDate,
             QueryParamStyle.Form,
             true,
         );

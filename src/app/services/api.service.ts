@@ -109,6 +109,14 @@ export class ApiService {
         return this.logbookService.getLogbookEntries(vehicleId, page, limit, sort, dir, filter);
     }
 
+    getLogbookEntriesForCurrentMonth(vehicleId: string, page: number, limit: number, sort: string, dir: SortDirection, filter?: string): Observable<LogbookEntryResultList> {
+        var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+        var firstDay = new Date(y, m, 1).toISOString();
+        var lastDay = new Date(y, m + 1, 0).toISOString();
+
+        return this.logbookService.getLogbookEntries(vehicleId, page, limit, sort, dir, filter, firstDay, lastDay);
+    }
+
     getLogbookFuelEntries(vehicleId: string): Observable<LogbookFuelEntryResultList> {
         return this.logbookFuelService.getFuelEntries(vehicleId);
     }
