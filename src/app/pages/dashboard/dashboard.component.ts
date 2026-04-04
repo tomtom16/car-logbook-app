@@ -50,7 +50,6 @@ export class DashboardComponent implements OnInit {
     vehicleImage: Blob | undefined;
 
     username: string = '';
-    currentVehicleText: string = '';
     currentVehicle: Vehicle | null = null;
     noVehiclesYet: boolean = false;
 
@@ -97,9 +96,7 @@ export class DashboardComponent implements OnInit {
             next: (res) => {
                 this.loading = false;
                 this.currentVehicle = res;
-                this.currentVehicleText = !!res ? `${res.make} ${res.model}` : '';
                 console.log(this.currentVehicle);
-                console.log(this.currentVehicleText);
 
                 if (!!res && res.id != null && res.id != currentVehicleId) {
                     localStorage.setItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID, res.id);
@@ -130,7 +127,7 @@ export class DashboardComponent implements OnInit {
         let currentVehicleId = localStorage.getItem(APP_CONSTANTS.MISC.CURRENT_VEHICLE_ID);
 
         if (currentVehicleId != null) {
-            this.apiService.getLogbookEntriesForCurrentMonth(currentVehicleId, 0, 100, 'endTime', SortDirection.Desc, undefined) .subscribe({
+            this.apiService.getLogbookEntriesForCurrentMonth(currentVehicleId, 0, 100, 'endTime', SortDirection.Desc, undefined).subscribe({
                 next: (res) => {
                     if (!!res && !!res.entries) {
                         this.currentMonthEntries = res.entries;
@@ -152,9 +149,9 @@ export class DashboardComponent implements OnInit {
 
     calculateCurrentMonthDistance() {
         let distance: number = 0;
-        let max : number = 0;
+        let max: number = 0;
 
-        this.currentMonthEntries.forEach( (entry) => {
+        this.currentMonthEntries.forEach((entry) => {
             if (!!entry.trip) {
                 distance += entry.trip;
 
