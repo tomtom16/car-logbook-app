@@ -43,3 +43,10 @@
 .flex-grow-1 {
   flex: 1;
 }
+
+.login-icon {
+  width: auto;
+  height: 50px;
+  display: block;
+  overflow: hidden
+}
