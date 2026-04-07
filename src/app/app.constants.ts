@@ -15,6 +15,11 @@ export const APP_CONSTANTS = {
         REFUELING: {
             CREATE: '/logbook/fuel/create',
             LIST: '/logbook/fuel'
+        },
+        FORGOT_PW: {
+            FORM: '/forgot-password',
+            RESULT: '/forgot-password/result',
+            RESET: '/reset-password'
         }
     },
     MISC: {

@@ -18,6 +18,22 @@ export class AuthService {
         return this.apiService.register(username, password, email);
     }
 
+    forgotPw(username: string) {
+        return this.apiService.forgotPw(username);
+    }
+
+    resendForgotPwMail(username: string) {
+        return this.apiService.resendForgotPwMail(username);
+    }
+
+    validateForgotPwToken(token: string) {
+        return this.apiService.validateForgotPwToken(token);
+    }
+
+    resetPw(token: string, password: string) {
+        return this.apiService.resetPw(token, password);
+    }
+
     refreshToken() {
         return this.apiService.refresh(this.getRefreshToken()).pipe(
             tap((res) => {

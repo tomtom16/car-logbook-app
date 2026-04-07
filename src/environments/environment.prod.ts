@@ -2,5 +2,6 @@ export const environment = {
   production: true,
   authServiceBaseUrl: 'https://auth.20.105.38.239.sslip.io', // Auth service
   authServiceApiKey: '11113', // Auth service api key
-  carLogbookBaseUrl: 'https://logbook.20.105.38.239.sslip.io', // Car logbook service
+  carLogbookBaseUrl: 'https://logbook.20.105.38.239.sslip.io', // Car logbook service (Backend)
+  baseUrl: 'https://logbook-web.20.105.38.239.sslip.io' // Car logbook app (Frontend)
 };

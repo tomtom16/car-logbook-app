@@ -49,4 +49,8 @@ export class LoginComponent {
     onRegister() {
         this.router.navigate([APP_CONSTANTS.ROUTES.REGISTER]);
     }
+
+    onForgotPassword() {
+        this.router.navigate([APP_CONSTANTS.ROUTES.FORGOT_PW.FORM]);
+    }
 }

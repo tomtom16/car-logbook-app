@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {
-    Configuration,
+    Configuration, ForgotPasswordRequest, ForgotService,
     LoginRequest,
     LoginResponse,
     LoginService,
@@ -9,7 +9,7 @@ import {
     RefreshService,
     RegisterRequest,
     RegisterResponse,
-    RegisterService,
+    RegisterService, ResendResetPasswordEmailRequest, ResetPasswordRequest, ResetService, ValidatePasswordTokenRequest,
 } from '../api/auth';
 import {
     LogbookEntry, LogbookEntryResultList,
@@ -32,6 +32,8 @@ export class ApiService {
     refreshService: RefreshService;
     registerService: RegisterService;
     vehicleService: VehicleService;
+    forgotPasswordService: ForgotService;
+    resetPasswordService: ResetService;
 
     constructor(private http: HttpClient) {
         let configuration: Configuration = new Configuration({
@@ -57,6 +59,18 @@ export class ApiService {
             configuration
         );
 
+        this.forgotPasswordService = new ForgotService(
+            this.http,
+            environment.authServiceBaseUrl,
+            configuration
+        );
+
+        this.resetPasswordService = new ResetService(
+            this.http,
+            environment.authServiceBaseUrl,
+            configuration
+        );
+
         this.logbookService = new LogbookService(this.http, environment.carLogbookBaseUrl);
         this.logbookFuelService = new LogbookFuelService(this.http, environment.carLogbookBaseUrl);
         this.vehicleService = new VehicleService(this.http, environment.carLogbookBaseUrl);
@@ -70,6 +84,26 @@ export class ApiService {
     register(username: string, password: string, email: string): Observable<RegisterResponse> {
         let request: RegisterRequest = {username: username, password: password, email: email};
         return this.registerService.registerUser(request);
+    }
+
+    forgotPw(username: string) {
+        let request: ForgotPasswordRequest = {username: username, appUrl: environment.baseUrl + '/reset-password'};
+        return this.forgotPasswordService.createAndSendToken(request);
+    }
+
+    resendForgotPwMail(username: string) {
+        let request: ResendResetPasswordEmailRequest = {username: username};
+        return this.forgotPasswordService.resendMail(request);
+    }
+
+    resetPw(token: string, password: string) {
+        let request: ResetPasswordRequest = {token: token, newPassword: password};
+        return this.resetPasswordService.resetPassword(request);
+    }
+
+    validateForgotPwToken(token: string) {
+        let request: ValidatePasswordTokenRequest = {token: token};
+        return this.forgotPasswordService.validateToken(request)
     }
 
     refresh(refreshToken: string): Observable<LoginResponse> {

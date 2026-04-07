@@ -13,9 +13,11 @@ import {ListLogbookEntriesComponent} from "@app/pages/logbook/entry/list-entries
 import {ListLogbookFuelEntriesComponent} from "@app/pages/logbook/fuel/list-entries/list-logbook-fuel-entries.component";
 import {ListVehiclesComponent} from "@app/pages/vehicle/list-vehicles/list-vehicles.component";
 import {RandomDashboardComponent} from "@app/pages/random-dashboard/random-dashboard.component";
+import {ForgotPasswordComponent} from "@app/pages/forgot-password/forgot-password.component";
+import {ForgotPasswordResultComponent} from "@app/pages/forgot-password-result/forgot-password-result.component";
+import {ResetPasswordComponent} from "@app/pages/reset-password/reset-password.component";
 
 export const routes: Routes = [
-    // ✅ AUTH PAGES (NO NAVBAR)
     {
         path: '',
         component: AuthLayoutComponent,
@@ -23,6 +25,9 @@ export const routes: Routes = [
             {path: '', component: LoginComponent, canActivate: [guestGuard]},
             {path: 'login', component: LoginComponent, canActivate: [guestGuard]},
             {path: 'register', component: RegisterComponent, canActivate: [guestGuard]},
+            {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [guestGuard]},
+            {path: 'forgot-password/result', component: ForgotPasswordResultComponent, canActivate: [guestGuard]},
+            {path: 'reset-password', component: ResetPasswordComponent, canActivate: [guestGuard]},
         ],
     },
     {
