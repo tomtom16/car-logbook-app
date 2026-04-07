@@ -9,9 +9,8 @@
  */
 
 
-export interface RegisterRequest { 
+export interface ForgotPasswordRequest { 
     username: string;
-    password: string;
-    email: string;
+    appUrl: string;
 }
 

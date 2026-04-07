@@ -38,9 +38,20 @@
                         <div class="p-grid p-align-start">
 
                             <div class="p-col-12 p-md-6">
-                                <p><strong>Number of entries:</strong> {{ currentMonthEntries.length }}</p>
-                                <p><strong>Distance covered:</strong> {{ currentMonthDistance.toFixed(1) }} km</p>
-                                <p><strong>Longest single trip:</strong> {{ currentMonthLongestDistance.toFixed(1) }} km</p>
+                                <table>
+                                    <tr>
+                                        <td><strong>Number of entries:</strong></td>
+                                        <td>{{ currentMonthEntries.length }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Distance covered:</strong></td>
+                                        <td>{{ currentMonthDistance.toFixed(1) }} km</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Longest single trip:</strong></td>
+                                        <td>{{ currentMonthLongestDistance.toFixed(1) }} km</td>
+                                    </tr>
+                                </table>
                             </div>
 
                             <div class="p-col-12 p-md-6">

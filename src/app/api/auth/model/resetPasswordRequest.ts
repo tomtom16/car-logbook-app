@@ -9,9 +9,8 @@
  */
 
 
-export interface RegisterRequest { 
-    username: string;
-    password: string;
-    email: string;
+export interface ResetPasswordRequest { 
+    token: string;
+    newPassword: string;
 }
 

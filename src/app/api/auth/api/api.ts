@@ -1,3 +1,5 @@
+export * from './forgot.service';
+import { ForgotService } from './forgot.service';
 export * from './login.service';
 import { LoginService } from './login.service';
 export * from './me.service';
@@ -8,4 +10,6 @@ export * from './refresh.service';
 import { RefreshService } from './refresh.service';
 export * from './register.service';
 import { RegisterService } from './register.service';
-export const APIS = [LoginService, MeService, PingService, RefreshService, RegisterService];
+export * from './reset.service';
+import { ResetService } from './reset.service';
+export const APIS = [ForgotService, LoginService, MeService, PingService, RefreshService, RegisterService, ResetService];

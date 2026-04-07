@@ -9,9 +9,7 @@
  */
 
 
-export interface RegisterRequest { 
+export interface ResendResetPasswordEmailRequest { 
     username: string;
-    password: string;
-    email: string;
 }
 
