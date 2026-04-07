@@ -3,7 +3,7 @@
     <p-card class="login-card">
 
         <img
-                src="assets/images/logo_text_alt.png"
+                src="assets/images/logo_text.png"
                 alt="Login Icon"
                 class="register-icon"
         />
@@ -19,12 +19,25 @@
                 <label for="username">Username</label>
 
                 <span class="p-input-icon-left w-full">
-          <!--<i class="pi pi-user"></i>-->
           <input
                   id="username"
                   pInputText
                   [(ngModel)]="username"
                   placeholder="Enter username"
+                  (keyup.enter)="onRegister()"/>
+        </span>
+            </div>
+
+            <!-- Email -->
+            <div class="field">
+                <label for="email">Email</label>
+
+                <span class="p-input-icon-left w-full">
+          <input
+                  id="email"
+                  pInputText
+                  [(ngModel)]="email"
+                  placeholder="Enter email"
                   (keyup.enter)="onRegister()"/>
         </span>
             </div>

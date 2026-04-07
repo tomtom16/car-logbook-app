@@ -67,8 +67,8 @@ export class ApiService {
         return this.loginService.login(request);
     }
 
-    register(username: string, password: string): Observable<RegisterResponse> {
-        let request: RegisterRequest = {username: username, password: password};
+    register(username: string, password: string, email: string): Observable<RegisterResponse> {
+        let request: RegisterRequest = {username: username, password: password, email: email};
         return this.registerService.registerUser(request);
     }
 

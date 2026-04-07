@@ -6,10 +6,10 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 
-import {AuthService} from '../../services/auth.service';
+import {AuthService} from '@app/services/auth.service';
 import {Message} from 'primeng/message';
 import {Password} from 'primeng/password';
-import {APP_CONSTANTS} from "../../app.constants";
+import {APP_CONSTANTS} from "@app/app.constants";
 
 @Component({
     selector: 'app-login',
@@ -21,6 +21,7 @@ import {APP_CONSTANTS} from "../../app.constants";
 export class RegisterComponent {
     username = '';
     password = '';
+    email = '';
     error = '';
 
     constructor(
@@ -30,8 +31,10 @@ export class RegisterComponent {
     }
 
     onRegister() {
-        if (!this.username || !this.password) return;
-        this.auth.register(this.username, this.password).subscribe({
+        if (!this.username || !this.password || !! this.email) {
+            this.error = 'Missing credentials';
+        };
+        this.auth.register(this.username, this.password, this.email).subscribe({
             next: (res) => {
                 console.log(res);
                 this.router.navigate([APP_CONSTANTS.ROUTES.LOGIN]);

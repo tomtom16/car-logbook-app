@@ -14,8 +14,8 @@ export class AuthService {
         return this.apiService.login(username, password);
     }
 
-    register(username: string, password: string) {
-        return this.apiService.register(username, password);
+    register(username: string, password: string, email: string) {
+        return this.apiService.register(username, password, email);
     }
 
     refreshToken() {

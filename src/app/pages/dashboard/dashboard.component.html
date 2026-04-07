@@ -86,12 +86,16 @@
     }
 
     @if (noVehiclesYet) {
-        <div class="p-grid p-m-3 p-justify-center">
-
-            <p>You don't have any vehicles in your profile yet. Create your first vehicle <a
-                    href="/vehicle/create">here</a>
-            </p>
-
+        <div class="p-col-12 p-md-4">
+            <p-card header="No vehicles yet!" class="logbook-entry-card">
+                <div class="p-grid p-align-start">
+                    <div class="p-col-12 p-md-6">
+                        <p>You don't have any vehicles in your profile yet. Create your first vehicle <a
+                                href="/vehicle/create">here</a>
+                        </p>
+                    </div>
+                </div>
+            </p-card>
         </div>
     }
 
